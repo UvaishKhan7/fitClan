@@ -3,7 +3,14 @@ import "./CustomDiet.css";
 import { BsSearch } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 import CalorieCalculator from "../CalorieCalculator/CalorieCalculator";
-
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 const CustomDiet = ({ foodData }) => {
   const [numberofMeals, setnumberofMeals] = useState(4);
   const data = []
@@ -18,7 +25,43 @@ const CustomDiet = ({ foodData }) => {
   const [mealdata, setmealdata] = useState(data)
   const [selectedMeal, setSelectedMeal] = useState(1);
   const [totalCal, setTotalCal] = useState(0);
+  const [totalProtein, setTotalProtein] = useState(0);
+  const [totalCarbohydrate, setTotalCarbohydrate] = useState(0);
+  const [totalFat, setTotalFat] = useState(0);
 
+  //mui table
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+  
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+      border: 0,
+    },
+  }));
+  
+  function createData(name, calories, fat, carbs, protein) {
+    return { name, calories, fat, carbs, protein };
+  }
+  
+  const rows = [
+    createData('Calories', totalCal.toFixed(1),10 ),
+    createData('Proteins', totalProtein.toFixed(1), 9.0),
+    createData('Carbohydates', totalCarbohydrate.toFixed(1), 16.0),
+    createData('Fat', totalFat.toFixed(1), 3.7),
+  ];
+  //end of mui table 
+  
   const handleSearch = (e) => {
     const searchedWord = e.target.value.toLowerCase();
     setWordEntered(searchedWord);
@@ -45,23 +88,33 @@ const CustomDiet = ({ foodData }) => {
       }
     }
     setTotalCal(totalCal + item.calories)
+    setTotalProtein(totalProtein + item.proteins)
+    setTotalCarbohydrate(totalCarbohydrate + item.carbohydrate)
+    setTotalFat(totalFat+ item.fat)
     handleClear();
   }
 
 
   return (
     <>
-      <CalorieCalculator setnumberofMeals={setnumberofMeals} />
-
+      {/* <CalorieCalculator setnumberofMeals={setnumberofMeals} /> */}
+      <div className="searchNadd">
+      <div className="mealSelector">
+        <select onChange={(e) => setSelectedMeal(e.target.value)}>
+          {mealdata.map((options) => {
+            return (<option value={options.mealNo}>meal{options.mealNo}</option>)
+          })}
+        </select>
+      </div>
       <div className="searchbar">
         <div className="searchinput">
-          <input
+          <input className="mealinput"
             placeholder="Search"
             value={wordEntered}
             onChange={handleSearch}
           ></input>
-          {wordEntered !== 0 ? (
-            <AiOutlineClose onClick={handleClear} />
+          {wordEntered != 0 ? (
+            <AiOutlineClose className="searchicon" onClick={handleClear} />
           ) : (
             <BsSearch className="searchicon" />
           )}
@@ -72,31 +125,18 @@ const CustomDiet = ({ foodData }) => {
             {searchedData.slice(0, 10).map((item, key) => {
               return (
                 <div className="resultsList">
-                  <div>{item.name}</div>
-                  <button
-                    onClick={e => additem(item)}>
-                    +
-                  </button>
+                  <div><strong>{item.name.toUpperCase()}</strong> <span style={{fontSize:'12px',color:'grey'}}>({item.calories} kcal Protein {item.proteins}g {item.fat}kcal )</span></div>
+                  <button className="addButton" onClick={e => additem(item)}>+</button>
                 </div>
               );
             })}
           </div>
         )}
+        
       </div>
-      <div className="mealsButton">
-        <select onChange={(e) => setSelectedMeal(e.target.value)}>
-          {/* <option>--select meal number--</option> */}
-          {mealdata.map((options) => {
-
-            return (
-              <option value={options.mealNo}>meal{options.mealNo}</option>
-            )
-          })}
-          {/* <option value={1}>meal1</option>
-        <option value={2}>meal2</option>
-        <option value={3} >meal3</option> */}
-        </select>
+      
       </div>
+      
 
 
 
@@ -118,7 +158,40 @@ const CustomDiet = ({ foodData }) => {
           )
         })}
       </div>
-      <h1>tot{totalCal}</h1>
+      <div className="totalMacro">
+      
+
+
+    <TableContainer component={Paper}>
+      <Table  aria-label="customized table">
+        <TableHead>
+          <TableRow>
+            <StyledTableCell>Macro</StyledTableCell>
+            <StyledTableCell align="right">Your Plan</StyledTableCell>
+            <StyledTableCell align="right">Recommended</StyledTableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <StyledTableRow key={row.name}>
+              <StyledTableCell component="th" scope="row">
+                <strong>{row.name}</strong>
+              </StyledTableCell>
+              <StyledTableCell align="right">{row.calories}</StyledTableCell>
+              <StyledTableCell align="right">{row.fat}</StyledTableCell>
+            </StyledTableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+
+        {/* <h2>Total Macro</h2>
+        <h3>Calories : {totalCal} kcal</h3>
+        <h3>Proteins : {totalCal} g</h3>
+        <h3>Carbohydrate : {totalCal} g</h3>
+        <h3>Fat : {totalCal} g</h3> */}
+
+      </div>
     </>
   );
 };
