@@ -17,11 +17,11 @@ export default function Signup() {
         confirmPassword: '',
         username: '',
         gender: '',
-        age: '',
-        weight: '',
-        height: '',
-        meals: '',
-        activityLevel: ''
+        age: 0,
+        weight: 0,
+        height: 0,
+        meals: 0,
+        activityLevel: 0
     })
 
     useEffect(() => {
@@ -67,11 +67,11 @@ export default function Signup() {
                 confirmPassword: '',
                 username: '',
                 gender: '',
-                age: '',
-                weight: '',
-                height: '',
-                meals: '',
-                activityLevel: ''
+                age: 0,
+                weight: 0,
+                height: 0,
+                meals: 0,
+                activityLevel: 0
             })
         }
         alert(`Hey ${user.username}! Your Profile created successfully!`)

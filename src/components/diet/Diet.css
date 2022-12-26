@@ -1,55 +1,90 @@
-.diet{
-    margin: 0 auto;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(2px);
-    box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
-    padding: 2rem 0;
-    color: white;
+.diet {
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
+  padding: 2rem 0;
+  color: white;
+  display: grid;
+  place-items: center;
 }
-.commonDiet{
-    width: 70%;
-    margin: auto;
-    background-color: rgba(0, 0, 0, 0.5);
+
+.diet > h2,
+.plan1,
+.plan2 {
+  text-transform: capitalize;
+  margin: 1rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.diet > h2 {
+  width: 600px;
+  padding: 1rem;
+}
+
+.commonDiet {
+  width: 70%;
+  margin: auto;
   box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
   color: white;
-  padding: 1rem;
+  padding: 1rem 2rem;
   border-radius: 0.5rem;
   display: grid;
-  
-  
 }
-.row1 ,.row2 ,.row3{
-    display: flex;   
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.541);
+
+.row1,
+.row2,
+.row3 {
+  display: flex;
+  text-align: center;
 }
-.plan{
-    width: 50%;
-    border: 1px solid black;
-    height: 150px;
-    text-align: center;
-    
-    transition: 0.2s;
+
+.plan {
+  width: 50%;
+  border: 1px solid black;
+  height: 150px;
+  text-align: center;
+  transition: 0.2s;
 }
-.plan:hover{
-    transform: scale(1.05);
+
+.plan:hover {
+  transform: scale(1.05);
 }
-.createPlan{
-        width: 10%;
-        background-color: rgb(1, 1, 1);
-        border: 1px solid grey;
-        cursor: pointer;
-        border-radius: 15px;
-        margin: auto;
-        height: 30px;
+
+.createPlan {
+  width: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  cursor: pointer;
+  border-radius: 0.5rem;
+  margin: auto;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-decoration: none;
+  padding: 0.5rem 0rem;
 }
-.createPlan:hover{
-    background-color: white;
-    color: black;
+
+.createPlan:hover {
+  background-color: rgba(255, 255, 255, 0.582);
+  color: black;
 }
-.dietHeading{
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+
+.dietHeading > h2 {
+  text-transform: capitalize;
+  margin: 1rem;
+}
+
+.dietHeading > a {
+  text-decoration: none;
+}
+
+.dietHeading {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }

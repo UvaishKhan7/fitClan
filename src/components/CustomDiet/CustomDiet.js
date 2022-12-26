@@ -13,8 +13,23 @@ import Paper from '@mui/material/Paper';
 import { UserAuth } from "../../UserAuthContext";
 
 const CustomDiet = ({ foodData }) => {
-  // eslint-disable-next-line
-  const {userDetails} = UserAuth();
+
+  const { userDetails } = UserAuth();
+
+  //Formula for calculating calorie/day
+  const caloriePerDay = userDetails.gender === 'male' ?
+    ((66.5 + (13.75 * userDetails.weight) + (5.003 * userDetails.height) - (6.75 * userDetails.age)) * userDetails.activityLevel).toFixed(2)
+    :
+    ((66.5 + (13.75 * userDetails.weight) + (5.003 * userDetails.height) - (6.75 * userDetails.age)) * userDetails.activityLevel).toFixed(2);
+
+  //fromula for calculating daily protein intake
+  const dailyProtein = (userDetails.gender === 'male' ? (userDetails.weight * 0.8) : (userDetails.weight * 0.65)).toFixed(2);
+
+  //fromula for calculating daily Carbohydrate
+  const dailyCarbs = (caloriePerDay * (55 / 100)).toFixed(2);
+
+  //fromula for calculating daily Fat intake
+  const dailyFat = (caloriePerDay * (30 / 100)).toFixed(2);
 
   const data = [];
 
@@ -23,7 +38,7 @@ const CustomDiet = ({ foodData }) => {
       { mealNo: i, items: [] }
     )
   }
-  
+
   const [searchedData, setsearchedData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
   // eslint-disable-next-line
@@ -60,10 +75,10 @@ const CustomDiet = ({ foodData }) => {
   }
 
   const rows = [
-    createData('Calories', totalCal.toFixed(1), 10),
-    createData('Proteins', totalProtein.toFixed(1), 9.0),
-    createData('Carbohydates', totalCarbohydrate.toFixed(1), 16.0),
-    createData('Fat', totalFat.toFixed(1), 3.7),
+    createData('Calories', totalCal.toFixed(1), caloriePerDay),
+    createData('Proteins', totalProtein.toFixed(1), dailyProtein),
+    createData('Carbohydates', totalCarbohydrate.toFixed(1), dailyCarbs),
+    createData('Fat', totalFat.toFixed(1), dailyFat),
   ];
   //end of mui table 
 
@@ -103,8 +118,8 @@ const CustomDiet = ({ foodData }) => {
       <div className="searchNadd">
         <div className="mealSelector">
           <select onChange={(e) => setSelectedMeal(e.target.value)}>
-            {mealdata.map((options) => {
-              return (<option value={options.mealNo}>meal{options.mealNo}</option>)
+            {mealdata.map((options, name) => {
+              return (<option key={name} value={options.mealNo}>meal{options.mealNo}</option>)
             })}
           </select>
         </div>
@@ -124,10 +139,13 @@ const CustomDiet = ({ foodData }) => {
 
           {searchedData !== 0 && (
             <div className="searchresults">
-              {searchedData.slice(0, 10).map((item, key) => {
+              {searchedData.slice(0, 10).map((item, name) => {
                 return (
-                  <div className="resultsList">
-                    <div><strong>{item.name.toUpperCase()}</strong> <span style={{ fontSize: '12px', color: 'grey' }}>({item.calories} kcal Protein {item.proteins}g {item.fat}kcal )</span></div>
+                  <div key={name} className="resultsList">
+                    <div>
+                      <strong>{item.name.toUpperCase()}</strong>
+                      <span style={{ fontSize: '12px', color: 'grey' }}>({item.calories} kcal Protein {item.proteins}g {item.fat}kcal )</span>
+                    </div>
                     <button className="addButton" onClick={e => additem(item)}>+</button>
                   </div>
                 );
