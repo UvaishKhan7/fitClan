@@ -1,0 +1,13 @@
+.quoteText{
+    background: rgba(0, 0, 0, 0.637);
+    padding: 1rem;
+    margin: 1rem;
+    display: grid;
+    place-content: center;
+    border-radius: 1rem;
+    color: white;  
+    cursor: default;
+    
+
+} 
+

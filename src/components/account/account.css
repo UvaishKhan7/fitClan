@@ -1,0 +1,8 @@
+.account{
+    color: white;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    margin: 2rem;
+    padding: 2rem;
+    border-radius: 1rem ;
+}

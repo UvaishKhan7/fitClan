@@ -1,0 +1,48 @@
+.headerWrapper{
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.5);
+}
+
+.banner{
+    width: 100%;
+}
+
+.logo{
+    position: absolute;
+    top: 2.5rem;
+    left: 1.5rem;
+    width: 150px;
+}
+
+#title{
+    color: #0072ff;
+    background-color: #252525b2;
+    box-shadow: 2px 2px 2px #00000080, 10px 1px 12px #00000080;
+    font-weight: 800;
+    padding: 0.2rem 1rem;
+    border-radius: 1rem;
+    animation: animate 3s linear infinite;
+    text-shadow: 0 0 50px #0072ff, 0 0 100px #0072ff, 0 0 150px #0072ff, 0 0 200px #0072ff;
+    animation-delay: 0.3s;
+}
+
+.navTitles{
+    font-weight: 600;
+}
+
+@keyframes animate {
+    from {
+        filter: hue-rotate(0deg);
+    }
+    to{
+        filter: hue-rotate(360deg);
+    }
+}
+
+/* ======== Media Queryu for Small Devices ======== */
+@media screen and (max-width: 600px) {
+    .logo{
+        width: 40px;
+        top: 1rem;
+        left: 0.5rem
+    }
+}
