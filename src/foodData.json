@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [
     {
       "name": "chicken egg",
@@ -344,4 +345,352 @@
   }
   
   ]
+=======
+[
+    {
+      "name": "chicken egg",
+      "proteins": 6,
+      "calories": 72,
+      "fat": 11,
+      "carbohydrate": 0.6
+    },
+    {
+      "name": "upma",
+      "proteins": 1.8,
+      "calories": 192,
+      "fat": 3.7,
+      "carbohydrate": 23.7
+    },
+    {
+      "name": "poha",
+      "proteins": 2.2,
+      "calories": 180,
+      "fat": 3.5,
+      "carbohydrate": 18.8
+    },
+    {
+      "name": "idli",
+      "proteins": 2,
+      "calories": 35,
+      "fat": 0.1,
+      "carbohydrate": 8
+    },
+    {
+      "name": "rava idli",
+      "proteins": 7.1,
+      "calories": 161,
+      "fat": 4.9,
+      "carbohydrate": 65
+    },
+    {
+      "name": "medu vada",
+      "proteins": 3.6,
+      "calories": 97,
+      "fat": 5.2,
+      "carbohydrate": 6.3
+    },
+    {
+      "name": "puri",
+      "proteins": 1.3,
+      "calories": 101,
+      "fat": 7.4,
+      "carbohydrate": 7.5
+    },
+    {
+      "name": "dosa",
+      "proteins": 4.8,
+      "calories": 166,
+      "fat": 3.2,
+      "carbohydrate": 29.3
+    },
+    {
+      "name": "rice",
+      "proteins": 4.2,
+      "calories": 204,
+      "fat": 0.44,
+      "carbohydrate": 44.8
+    },
+    {
+      "name": "ghee rice",
+      "proteins": 2,
+      "calories": 150,
+      "fat": 2,
+      "carbohydrate": 28
+    },
+    {
+      "name": "biryani",
+      "proteins": 12,
+      "calories": 300,
+      "fat": 9.8,
+      "carbohydrate": 48
+    },
+    {
+      "name": "chicken",
+      "proteins": 27.1,
+      "calories": 237,
+      "fat": 13.4,
+      "carbohydrate": 0
+    },
+    {
+      "name": "fish",
+      "proteins": 17.5,
+      "calories": 84,
+      "fat": 0.9,
+      "carbohydrate": 0
+    },
+    {
+      "name": "fish curry",
+      "proteins": 29.5,
+      "calories": 241,
+      "fat": 11,
+      "carbohydrate": 4.7
+    },
+    {
+      "name": "salmon",
+      "proteins": 21.6,
+      "calories": 146,
+      "fat": 5.9,
+      "carbohydrate": 0
+    },
+    {
+      "name": "sambar",
+      "proteins": 11.6,
+      "calories": 273,
+      "fat": 9.8,
+      "carbohydrate": 38.1
+    },
+    {
+      "name": "pav bhaji",
+      "proteins": 6.5,
+      "calories": 320,
+      "fat": 19.6,
+      "carbohydrate": 18.1
+    },
+    {
+      "name": "vegitable biryani",
+      "proteins": 7.7,
+      "calories": 318,
+      "fat": 6.2,
+      "carbohydrate": 57.1
+    },
+    {
+      "name": "oats",
+      "proteins": 13.1,
+      "calories": 320,
+      "fat": 6.9,
+      "carbohydrate": 66.8
+    },
+    {
+      "name": "moong dal",
+      "proteins": 5.3,
+      "calories": 106,
+      "fat": 0.6,
+      "carbohydrate": 17.3
+    },
+    {
+      "name": "coffee",
+      "proteins": 0.3,
+      "calories": 30,
+      "fat": 0.1,
+      "carbohydrate": 7.1
+    },
+    {
+      "name": "tea",
+      "proteins": 3.7,
+      "calories": 90,
+      "fat": 3.7,
+      "carbohydrate": 10.3
+    },
+    {
+      "name": "green tea",
+      "proteins": 0,
+      "calories": 5,
+      "fat": 0,
+      "carbohydrate": 0.4
+    },
+    {
+      "name": "cereal",
+      "proteins": 2.4,
+      "calories": 124,
+      "fat": 1.1,
+      "carbohydrate": 27.4
+    },
+    {
+      "name": "corn flakes",
+      "proteins": 1.8,
+      "calories": 101,
+      "fat": 0.03,
+      "carbohydrate": 24.8
+    },
+    {
+      "name": "chocos",
+      "proteins": 2.7,
+      "calories": 116,
+      "fat": 0.9,
+      "carbohydrate": 38.7
+    },
+    {
+      "name": "wheat roti",
+      "proteins": 3.4,
+      "calories": 129,
+      "fat": 4,
+      "carbohydrate": 19.8
+    },
+    {
+      "name": "chapati",
+      "proteins": 2.3,
+      "calories": 68,
+      "fat": 0.6,
+      "carbohydrate": 13
+    },
+    {
+      "name": "apple",
+      "proteins": 0.3,
+      "calories": 72,
+      "fat": 0.2,
+      "carbohydrate": 19
+    },
+    {
+      "name": "apple juice",
+      "proteins":0.1,
+      "calories": 117,
+      "fat": 0.2,
+      "carbohydrate": 28.9
+    },
+    {
+      "name": "mango",
+      "proteins": 1,
+      "calories": 135,
+      "fat": 0.5,
+      "carbohydrate": 35.1
+    },
+    {
+      "name": "mango juice",
+      "proteins": 3.6,
+      "calories": 171,
+      "fat": 1.4,
+      "carbohydrate": 16.2
+    },
+    {
+      "name": "orange",
+      "proteins": 1.2,
+      "calories": 62,
+      "fat": 0.1,
+      "carbohydrate": 15.3
+    },
+    {
+      "name": "orange juice",
+      "proteins":1.7,
+      "calories": 112,
+      "fat": 0.5,
+      "carbohydrate": 25.7
+    },
+    {
+      "name": "grapes",
+      "proteins": 0.7,
+      "calories": 69,
+      "fat": 0.1,
+      "carbohydrate": 18
+    },
+    {
+      "name": "grape juice",
+      "proteins": 1.4,
+      "calories": 154,
+      "fat": 0.2,
+      "carbohydrate": 37.8
+    },
+    {
+      "name": "dates",
+      "proteins": 0.2,
+      "calories": 23,
+      "fat": 0,
+      "carbohydrate": 6.2
+    },
+    {
+      "name": "badam milk",
+      "proteins": 4,
+      "calories": 108,
+      "fat": 4,
+      "carbohydrate": 14
+    },
+    {
+      "name": "cashew",
+      "proteins": 16.5,
+      "calories": 581,
+      "fat": 47.7,
+      "carbohydrate": 30.1
+    },
+    {
+      "name": "biscuits-1n",
+      "proteins": 0.2,
+      "calories": 24,
+      "fat": 1,
+      "carbohydrate": 3.4
+    },
+    {
+      "name": "butter cookies-1s",
+      "proteins": 7.4,
+      "calories": 509,
+      "fat": 24.2,
+      "carbohydrate": 65.4
+    },
+    {
+      "name":"potato chips-1p",
+      "proteins":1.8,
+      "calories":153 ,
+      "fat": 10.5,
+      "carbohydrate":13.9 
+  },
+  {
+      "name":"lays",
+      "proteins":2.3,
+      "calories":68 ,
+      "fat": 0.6,
+      "carbohydrate":13 
+  },
+  {
+      "name":"pepsi 350ml",
+      "proteins": 0,
+      "calories":150 ,
+      "fat": 0,
+      "carbohydrate":41 
+  },
+  {
+      "name":"sprite 350ml",
+      "proteins": 0,
+      "calories":144 ,
+      "fat": 0,
+      "carbohydrate":36 
+  },
+  {
+      "name":"cola 350ml",
+      "proteins": 0.2,
+      "calories":136 ,
+      "fat": 0,
+      "carbohydrate":35 
+  },
+  {
+      "name":"beef",
+      "proteins": 26.3,
+      "calories":288 ,
+      "fat": 19.5,
+      "carbohydrate":0 
+  },
+  {
+      "name":"beef curry",
+      "proteins": 20.6,
+      "calories":362 ,
+      "fat": 22.9,
+      "carbohydrate":10.2 
+  },
+  {
+      "name":"chicken curry",
+      "proteins": 14.5,
+      "calories":160 ,
+      "fat": 8.6,
+      "carbohydrate":6.1 
+  }
+  
+  ]
+>>>>>>> 324f9c6239fa93f465ebc53dcb30c8df07c0c9cb
   

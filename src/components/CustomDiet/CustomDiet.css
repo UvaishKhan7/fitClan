@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .searchbar{
     width: 350px;
     position: absolute;
@@ -88,3 +89,169 @@
         left: 350px;
         margin: 5px;
     }
+=======
+.searchbar{
+    width: 30%;
+    position: relative;
+    background: rgba(68, 68, 68, 0.684);
+    box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    justify-content: center;
+    left:0;
+    right:0;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    .searchNadd{
+        display: block;
+    justify-content: center;
+    }
+     .mealinput {
+  width: 100%;
+  background: rgba(117, 117, 117, 0.288);
+  outline: none;
+  border-radius: 0.5rem;
+  padding: 5px 5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #fff;
+  
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.searchinput::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: capitalize;
+  font-size: smaller;
+}
+.searchinput{
+    
+    
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.searchinput:focus {
+  border-bottom: 2px solid #fff;
+  background: transparent;
+}
+    
+    
+      
+    .searchicon{
+        margin: 10px;
+        cursor: pointer;
+        fill: rgb(255, 255, 255);
+    }
+    .searchresults{
+        position: absolute;
+        width: 100%;
+        max-height: 200px;
+        overflow: hidden;
+        overflow-y: auto; 
+    }
+    .resultsList{
+        
+        display: flex;
+        justify-content: space-between;
+        background-color: black;
+        padding: 10px;
+        border: 0.5px solid rgba(255, 255, 255, 0.214);
+    }
+    
+    .resultsList:hover{
+        background-color: rgb(100, 100, 100);
+    }
+    .mealSelector{
+        margin: 10px;
+        position: relative;
+    }
+    .mealSelector select{
+        padding: 5px 15px;
+        border-radius: 4px;
+        background-color: rgba(0, 0, 0, 0.611);
+        color: white;
+    }
+    .addButton{
+        border-radius: 10px;
+        background-color: rgb(0, 145, 212);
+        border: none;
+        color: white;
+    }
+    
+    
+    /* custom diet */
+    
+    .customDiet{
+        padding-inline: 5px;
+        width: max-content;
+        border-radius: 8px;
+        box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
+        background-color: rgb(41, 41, 41);
+        
+        margin:50px auto;
+        display: flex;
+        flex-wrap: wrap;
+        
+    }
+    
+    .dietgGroup{
+        width: 250px;
+        margin: 5px;
+        background-color: black;
+        min-height: 350px;
+        max-height: 350px;
+        overflow: hidden;
+        overflow-y: auto; 
+        padding-top:0px ;
+        
+    }
+    .mealButton{
+        margin: auto;
+        text-align: center;
+        color: white;
+        background-color: rgb(0, 0, 0);
+        
+       margin-block: 4px;
+    }
+    .active{
+        background-color: rgb(0, 81, 212); ;
+    }
+    .dietitem{
+        display: flex;
+        justify-content: space-between;
+        padding-inline: 10px;
+        height: 40px;
+        border-radius: 5px;
+        background-color: rgb(49, 49, 49);
+        margin: 10px;
+        align-items: center;
+        color: white;
+        font-size: 13px;
+    }
+    .totalMacro{
+       width: 70%;
+       margin: auto;
+        text-align: left;
+    }
+
+
+    
+    
+
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+.searchresults::-webkit-scrollbar, .dietgGroup::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .searchresults , .dietgGroup{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+>>>>>>> 324f9c6239fa93f465ebc53dcb30c8df07c0c9cb

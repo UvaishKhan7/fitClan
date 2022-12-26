@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .userInput{
     display: flex;
     flex-direction: column;
@@ -5,3 +6,12 @@
     width: 200px;
     
 }
+=======
+.userInput{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 200px;
+    
+}
+>>>>>>> 324f9c6239fa93f465ebc53dcb30c8df07c0c9cb
