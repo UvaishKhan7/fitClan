@@ -115,7 +115,7 @@ export default function Signup() {
                     </select>
                 </div>
                 <div className="input_field_nested">
-                    <input type="date" className="input" name="dob" value={user.dob} onChange={userHandler} id="dob" />
+                    <input type="number" className="input" name="dob" value={user.dob} onChange={userHandler} id="dob" />
                     <select name="gender" className="select-input input" value={user.gender} onChange={userHandler} id="gender">
                         <option className="option" value="0">Select Gender:</option>
                         <option className="option" value="male">Male</option>
