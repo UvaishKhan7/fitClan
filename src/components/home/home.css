@@ -76,6 +76,7 @@
   box-shadow: 20px 20px 10px -6px rgba(0, 0, 0, 0.5);
   transition: all 0.2s ease-in;
   backface-visibility: hidden;
+  
 }
 
 .card1:hover {
@@ -90,7 +91,7 @@
 
 .card1 > p {
   margin: 0;
-  text-align: left;
+  text-align: center;
 }
 
 .GetstartedWrapper {

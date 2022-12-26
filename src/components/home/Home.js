@@ -25,6 +25,13 @@ export default function Home() {
   //Formula for calculating BFP for women
   const BFPWomen = ((1.20 * BMI) + (0.23 * userDetails.age) - 5.4).toFixed(2);
 
+  //Formula for calculating IBW for Men
+  const IBWMen = (22 * ((userDetails.height/100)*(userDetails.height/100))).toFixed(2)
+
+  //Formula for calculating IBW for women
+  const IBWWomen = (22 * (((userDetails.height/100)*(userDetails.height/100))-10)).toFixed(2)
+
+
   return (
     <div className="homeContainer">
       <div className="rowWrapper">
@@ -33,29 +40,35 @@ export default function Home() {
           <div className="cards">
             <div className="card1">
               <h6>BMI (Body Mass Index)</h6>
-              <p>Your BMI is <strong> {BMI}</strong></p>
+              <p><strong> {BMI}</strong></p>
             </div>
             <div className="card1">
               <h6>BMR (Basal Metabolic Rate)</h6>
               <p>
                 <strong>
-                  {(userDetails.gender === 'male') ? (BMRMen) : (BMRWomen)}
-                </strong>
-                calories/day</p>
+                  {(userDetails.gender === 'male') ? (BMRMen) : (BMRWomen)} Kcal/day
+                </strong> 
+                </p>
             </div>
             <div className="card1">
               <h6>BFP (Body Fat Percentage)</h6>
-              <p>Your BFP is &nbsp;
+              <p>
                 <strong className=''>
                   {
                     (userDetails.gender === 'male') ? (BFPMen) : (BFPWomen)
-                  }
+                  } %
                 </strong>
               </p>
             </div>
             <div className="card1">
               <h6>IBW (Ideal Body Weight)</h6>
-              <p>Your IBW is 72</p>
+              <p>
+              <strong className=''>
+                  {
+                    (userDetails.gender === 'male') ? (IBWMen) : (IBWWomen)
+                  } Kg
+                </strong>
+              </p>
             </div>
           </div>
         </div>
