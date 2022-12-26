@@ -1,5 +1,5 @@
 .searchbar{
-    width: 30%;
+    width: 350px;
     position: relative;
     background: rgba(68, 68, 68, 0.684);
     box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
@@ -108,7 +108,7 @@
     }
     
     .dietgGroup{
-        width: 250px;
+        width: 220px;
         margin: 5px;
         background-color: black;
         min-height: 350px;
