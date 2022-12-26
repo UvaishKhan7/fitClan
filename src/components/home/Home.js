@@ -29,7 +29,7 @@ export default function Home() {
   const IBWMen = (22 * ((userDetails.height / 100) * (userDetails.height / 100))).toFixed(2)
 
   //Formula for calculating IBW for women
-  const IBWWomen = (22(((userDetails.height / 100) * (userDetails.height / 100)) - 10)).toFixed(2)
+  const IBWWomen = (22 * (((userDetails.height / 100) * (userDetails.height / 100)) - 10)).toFixed(2)
 
   return (
     <div className="homeContainer">
