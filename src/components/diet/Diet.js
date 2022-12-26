@@ -17,18 +17,18 @@ export default function Diet() {
       <div className='commonDiet'>
 
         <div className='row1'>
-          <div className='plan1 plan'>plan1</div>
-          <div className='plan2 plan'>plan2</div>
+          <div className='plan1 plan'><h3>Weight Loss</h3></div>
+          <div className='plan2 plan'><h3>High protein</h3></div>
         </div>
 
         <div className='row2'>
-          <div className='plan1 plan'>plan1</div>
-          <div className='plan2 plan'>plan2</div>
+          <div className='plan1 plan'><h3>High-Protein low-fat</h3></div>
+          <div className='plan2 plan'><h3>Ketogenic Plan</h3></div>
         </div>
 
         <div className='row3'>
-          <div className='plan1 plan'>plan1</div>
-          <div className='plan2 plan'>plan2</div>
+          <div className='plan1 plan'><h3>mass gainer</h3></div>
+          <div className='plan2 plan'><h3>plan</h3></div>
         </div>
 
       </div>
