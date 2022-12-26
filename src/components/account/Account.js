@@ -1,7 +1,11 @@
 import React from 'react';
 import './account.css';
+import { UserAuth } from '../../UserAuthContext';
 
 export default function Account() {
+
+    const {userDetails} = UserAuth();
+    console.log(userDetails)
 
     return (
         <div className='account'>
@@ -15,7 +19,7 @@ export default function Account() {
                 <p>Your BMR is </p>
                 <p>Your BFP is </p>
                 <p>Your IBW is </p>
-                <p>Your TDEE is </p>
+                <p>Your TDEE is {userDetails.json()} </p>
             </div>
         </div>
     )

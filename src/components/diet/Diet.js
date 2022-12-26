@@ -10,6 +10,7 @@ export default function Diet() {
   function showDietMaker() {
     setShowPlan(!showPlan)
   }
+  
   return (
     <div className='diet  p-5'>
       <h2>Common diet plans</h2>

@@ -9,7 +9,7 @@ import { UserAuth } from "../../UserAuthContext";
 export default function Home() {
 
   const { userDetails } = UserAuth();
-
+  
   //Formula for calculating BMI
   const BMI = (userDetails.weight / ((userDetails.height / 100) * (userDetails.height / 100))).toFixed(2);
 
@@ -26,7 +26,7 @@ export default function Home() {
   const BFPWomen = ((1.20 * BMI) + (0.23 * userDetails.age) - 5.4).toFixed(2);
 
   //Formula for calculating IBW for Men
-  const IBWMen = (22 * ((userDetails.height / 100)(userDetails.height / 100))).toFixed(2)
+  const IBWMen = (22 * ((userDetails.height / 100) * (userDetails.height / 100))).toFixed(2)
 
   //Formula for calculating IBW for women
   const IBWWomen = (22(((userDetails.height / 100) * (userDetails.height / 100)) - 10)).toFixed(2)
