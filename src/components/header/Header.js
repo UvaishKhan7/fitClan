@@ -1,5 +1,5 @@
 //import { Avatar, Button } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, useNavigate } from 'react-router-dom';

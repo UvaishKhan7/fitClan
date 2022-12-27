@@ -1,0 +1,10 @@
+.exercise{
+    display: grid;
+    place-items: center;
+    font-size: 2rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    height: 50vh;
+    color: white;
+    box-shadow: inset 0 0 10px #000000;
+}
