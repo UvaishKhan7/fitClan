@@ -8,14 +8,11 @@ import LOGO from '../../assets/logo.png';
 import './header.css';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { UserAuth } from '../../UserAuthContext';
-import { collection, onSnapshot, query } from 'firebase/firestore';
-import db from '../../firebase';
 
 function Header() {
 
-  const { user, logout } = UserAuth();
+  const { user, logout, userDetails } = UserAuth();
   const navigate = useNavigate();
-  const [userDetails, setUserDetails] = useState({});
   
   const handleLogout = async () => {
     try {
@@ -25,19 +22,6 @@ function Header() {
       console.log(e.message)
     }
   }
-
-  useEffect(() => {
-    const q = query(collection(db, 'user'));
-    const unsub = onSnapshot(q, (snapshot) => {
-      snapshot.forEach((doc) => {
-        setUserDetails({
-          ...doc.data(),
-          id: doc.id
-        })        
-      });
-    })
-    return () => unsub();
-  }, []);
 
   return (
     <div className='headerWrapper'>
