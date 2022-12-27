@@ -151,36 +151,49 @@
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+    padding: 0px;
+  }
+  .homeContainer{
+    padding-top: 1rem;
+    padding-bottom: 0;
   }
   .detailsWrapper {
     margin: 0 auto;
+    padding: 0px;
   }
   .detailsWrapper > h5 {
     font-size: 0.7rem;
+    margin: 0 1rem;
   }
   .cards {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin: 0rem;
+    gap: 0.8rem;
+    margin: 1rem 1rem;
+    margin-bottom: 0.5rem;
   }
   .card1 {
-    width: 150px;
+    width: 170px;
     font-size: 0.8rem;
-    padding: 0.5rem;
   }
   .GetstartedWrapper {
     background-color: rgba(0, 0, 0, 0.5);
-    padding: 1rem 0rem;
+    padding: 1rem 2rem;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    margin: 1rem;
+    margin-top: 0.5rem;
   }
   .Getstarted-Workout,
   .Getstarted-Diet {
     list-style: none;
     text-align: left;
-    margin: 0.5rem;
-    padding: 0.8rem;
+    margin: 1rem;
     font-size: 0.8rem;
     display: grid;
+    width: max-content;
     place-items: center;
   }
   .buttonDiv {

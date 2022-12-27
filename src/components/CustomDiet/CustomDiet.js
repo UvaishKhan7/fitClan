@@ -144,7 +144,7 @@ const CustomDiet = ({ foodData }) => {
                   <div key={name} className="resultsList">
                     <div>
                       <strong>{item.name.toUpperCase()}</strong>
-                      <span style={{ fontSize: '12px', color: 'grey' }}>({item.calories} kcal Protein {item.proteins}g {item.fat}kcal )</span>
+                      <span style={{ fontSize: '12px', color: 'grey' }}>({item.calories} kcal Protein {item.proteins}g, {item.fat}Kcal )</span>
                     </div>
                     <button className="addButton" onClick={e => additem(item)}>+</button>
                   </div>

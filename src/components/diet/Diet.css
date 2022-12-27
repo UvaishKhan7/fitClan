@@ -14,7 +14,6 @@
 .plan2 {
   text-transform: capitalize;
   margin: 1rem;
-  background-color: rgba(0, 0, 0, 0.4);
   box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
   border-radius: 0.5rem;
@@ -22,8 +21,7 @@
 }
 
 .diet > h2 {
-  width: 600px;
-  padding: 1rem;
+  padding: 1rem 4rem;
 }
 
 .commonDiet {
@@ -33,7 +31,6 @@
   color: white;
   padding: 1rem 2rem;
   border-radius: 0.5rem;
-  display: grid;
 }
 
 .row1,
@@ -42,62 +39,61 @@
   display: flex;
   text-align: center;
 }
-.row1 .plan1{
-  background-image: url('https://c.ndtvimg.com/2019-04/a5jvu698_weight-loss-diet-chart_625x300_03_April_19.jpg');
-  background-size: cover;
-  color: black;
-}
-.row1 .plan2{
-  background-image: url('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/protein-1493121855.jpg');
-  background-size: cover;
-  background-position: center;
-  color: black;
-}
-.row2 .plan1{
-  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8MfMGl-25nC0vWRxPJYqNjU2bwQ0CcVg9XA&usqp=CAU');
-  background-size: cover;
-  color: black;
-}
-.row2 .plan2{
-  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkiHCfKJt86bZZCCzqVC2SljqdGh-V3mh-5Q&usqp=CAU');
-  background-size: cover;
-  background-position: center;
 
-  color: black;
-}
-.row3 .plan1{
-  background-image: url('https://media.istockphoto.com/id/1296031254/photo/composition-with-high-protein-food.jpg?s=170667a&w=0&k=20&c=2xlUG9P89gWZr1VRze4qtkOgjvebwriQZntrMN4TRQM=');
+.plan {
   background-size: cover;
   background-position: center;
-  color: black;
+  aspect-ratio: 16/9;
 }
-.row3 .plan2{
-  background-image: url('https://c.ndtvimg.com/2019-04/a5jvu698_weight-loss-diet-chart_625x300_03_April_19.jpg');
-  background-size: cover;
-  color: black;
+
+.row1 .plan1 {
+  background-image: url("https://c.ndtvimg.com/2019-04/a5jvu698_weight-loss-diet-chart_625x300_03_April_19.jpg");
+}
+.row1 .plan2 {
+  background-image: url("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/protein-1493121855.jpg");
+}
+.row2 .plan1 {
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8MfMGl-25nC0vWRxPJYqNjU2bwQ0CcVg9XA&usqp=CAU");
+}
+.row2 .plan2 {
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkiHCfKJt86bZZCCzqVC2SljqdGh-V3mh-5Q&usqp=CAU");
+}
+.row3 .plan1 {
+  background-image: url("https://media.istockphoto.com/id/1296031254/photo/composition-with-high-protein-food.jpg?s=170667a&w=0&k=20&c=2xlUG9P89gWZr1VRze4qtkOgjvebwriQZntrMN4TRQM=");
+}
+.row3 .plan2 {
+  background-image: url("https://c.ndtvimg.com/2019-04/a5jvu698_weight-loss-diet-chart_625x300_03_April_19.jpg");
+}
+
+.plan > h3 {
+  background-color: rgba(0, 0, 0, 0.205);
+  backdrop-filter: blur(5px);
+  padding: 0.5rem 2rem;
+  width: 100%;
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
 }
 
 .plan {
-  width: 50%;
   border: 1px solid black;
-  height: 150px;
   text-align: center;
   transition: 0.2s;
+  padding: 0;
+  width: 80%;
 }
 
 .plan:hover {
   transform: scale(1.05);
-  
 }
 
 .createPlan {
   width: 50%;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
   cursor: pointer;
   border-radius: 0.5rem;
   margin: auto;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: 1px;
   text-decoration: none;
@@ -105,7 +101,7 @@
 }
 
 .createPlan:hover {
-  background-color: rgba(255, 255, 255, 0.582);
+  background-color: rgba(255, 255, 255, 0.2);
   color: black;
 }
 
@@ -122,4 +118,21 @@
   text-align: center;
   justify-content: center;
   align-items: center;
+}
+
+/* ========== Media query for small devices (Mobiles) ========== */
+@media screen and (max-width: 600px) {
+  .diet {
+    padding: 0 !important;
+  }
+  .plan > h3 {
+    font-size: 0.8rem;
+  }
+  .commonDiet {
+    padding: 0;
+    width: 100%;
+  }
+  .createPlan{
+    margin-bottom: 1rem;
+  }
 }

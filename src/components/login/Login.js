@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../../UserAuthContext';
 import './login.css';
@@ -6,24 +6,16 @@ import FitClan from '../../assets/logo.png';
 
 export default function Login() {
 
-    const { signIn, error, currentUser } = UserAuth();
+    const { signIn, error } = UserAuth();
     const navigate = useNavigate();
 
-    const [errors, setError] = useState('');
+    // eslint-disable-next-line
+    const [err, setError] = useState('');
     const [backError, setBackError] = useState('');
     const [user, setUser] = useState({
         email: '',
         password: ''
     });
-
-    useEffect(() => {
-        if (error) {
-            setInterval(() => {
-                setBackError('')
-            }, 3000)
-            setBackError(error)
-        }
-    }, [error, currentUser])
 
     const userHandler = async (e) => {
         const { name, value } = e.target;
@@ -43,25 +35,18 @@ export default function Login() {
             await signIn(email, password)
             navigate('/')
         } catch (err) {
-            if (err.code === 'auth/user-not-found') {
-                setInterval(() => { 
-                    setError('')
-                }, 5000)
-                return setError('User not found!')
-            } else if (err.code === 'auth/wrong-password') {
-                setInterval(() => {
-                    setError('')
-                }, 5000)
-                return setError(`${err.message}`)
-            }
+            setInterval(() => {
+                setBackError(`${err.message}`)
+            }, 5000)
+            return setError('Please fill all the fields!')
         }
     }
 
     return (
         <div className='login'>
             {
-                errors ? (
-                    errors && <p className='error'>{errors}</p>
+                error ? (
+                    error && <p className='error'>{error}</p>
                 ) : (
                     backError && <p className='error'>{backError}</p>
                 )

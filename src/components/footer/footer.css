@@ -29,6 +29,7 @@
     text-align: center;
     justify-content: center;
     align-items: center;
+    text-transform: capitalize;
   }
   
   .footer_logo {
@@ -113,20 +114,19 @@
     .footerWrapper, .footerUpper{
       display: flex;
       flex-direction: column;
+      padding: 0;
     }
-    .socialMedia, .call {
+    .socialMedia, .call{
       margin-top: 1rem;
     }
     .subscribe{
       display: flex;
       flex-direction: row;
-      justify-content: center;
+      justify-content: space-evenly;
       align-items: center;
       margin: 0.5rem;
       gap: 1rem;
-    }
-    .subscribe{
-      display: flex;
+      width: 80%;
     }
     .subInput{
       display: flex;
@@ -138,5 +138,8 @@
     }
     .footerLower{
       font-size: 0.75rem;
+    }
+    .call{
+      margin-bottom: 0.5rem;
     }
   }
