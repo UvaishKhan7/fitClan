@@ -6,7 +6,16 @@ export default function ProtectedRoute({ children }) {
     const { user } = UserAuth();
 
     if (!user) {
-        return <Navigate to='/login' />
+        return <Navigate to='/landing' />
+    }
+    return (children)
+}
+
+export function AuthenticatedRoute({ children }) {
+    const { user } = UserAuth();
+
+    if (user) {
+        return <Navigate to='/' />
     }
     return (children)
 }

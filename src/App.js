@@ -11,7 +11,8 @@ import Login from "./components/login/Login";
 import Account from "./components/account/Account";
 import Diet from "./components/diet/Diet";
 import Exercise from "./components/exercise/Exercise";
-import ProtectedRoute from "./ProtectedRoute";
+import ProtectedRoute, { AuthenticatedRoute } from "./ProtectedRoute";
+import LandingPage from "./components/LandingPage/LandingPage";
 
 function App() {
 
@@ -26,7 +27,9 @@ function App() {
             </ProtectedRoute>
           } />
           <Route path='/signup' element={<Signup />} />
-          <Route path='/login' element={<Login />} />
+          <Route path='/landing' element={<LandingPage />} />
+          <Route path='/login' element={
+            <AuthenticatedRoute><Login /></AuthenticatedRoute>} />
           <Route path='/account' element={
             <ProtectedRoute>
               <Account />
@@ -43,7 +46,7 @@ function App() {
             </ProtectedRoute>
           } />
         </Routes>
-        
+
         <Footer />
       </UserAuthContext>
     </div>

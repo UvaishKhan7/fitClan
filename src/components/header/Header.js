@@ -1,5 +1,5 @@
 //import { Avatar, Button } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, useNavigate } from 'react-router-dom';
@@ -8,16 +8,31 @@ import LOGO from '../../assets/logo.png';
 import './header.css';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { UserAuth } from '../../UserAuthContext';
+import { doc, onSnapshot } from 'firebase/firestore';
+import db from '../../firebase';
 
 function Header() {
 
-  const { user, logout, userDetails } = UserAuth();
+  const [userDetails, setUserDetails] = useState({});
+
+  const { user, logout } = UserAuth();
   const navigate = useNavigate();
-  
+
+  useEffect(() => {
+
+    if (user) {
+      onSnapshot(doc(db, 'user', user.uid), (snapshot) => {
+        setUserDetails(snapshot.data())
+      })
+    }
+
+  }, [user])
+
   const handleLogout = async () => {
     try {
       await logout();
-      navigate('/')
+      navigate('/login')
+      window.location.reload();
     } catch (e) {
       console.log(e.message)
     }
@@ -51,7 +66,7 @@ function Header() {
             <Navbar.Text className='navTitles'>
               {
                 !(user) ? <Link to='/login'>LOGIN</Link> :
-                  (<NavDropdown id="nav-dropdown-dark-example" title={`Hello ${userDetails && userDetails.username}`} menuVariant="dark">
+                  (<NavDropdown id="nav-dropdown-dark-example" title={`Hello ${userDetails.username}`} menuVariant="dark">
                     <NavDropdown.Item as={Link} to='/account'>
                       Account
                     </NavDropdown.Item>

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { AuthErrorCodes } from 'firebase/auth';
-import { collection, doc, onSnapshot, query, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import db, {
     auth, createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -19,9 +19,8 @@ const UserAuthContext = ({ children }) => {
     // eslint-disable-next-line
     const [error, setError] = useState('');
     const [user, setUser] = useState();
-    const [userDetails, setUserDetails] = useState({});
     const navigate = useNavigate();
-        
+
     const signUp = (email, password, username, gender, age, weight, height, meals, activityLevel) => {
         setError('');
         createUserWithEmailAndPassword(auth, email, password)
@@ -56,24 +55,24 @@ const UserAuthContext = ({ children }) => {
     const signIn = (email, password) => {
         setError('');
         signInWithEmailAndPassword(auth, email, password)
-        .then(result => {
-            console.log('result data:', result.data)
-            navigate('/')
-        })
-        .catch(err => {
-            setError(err)
-            if (err.code === 'auth/user-not-found') {
-                setInterval(() => {
-                    setError('')
-                }, 5000)
-                return setError('User not found!')
-            } else if (err.code === 'auth/wrong-password') {
-                setInterval(() => {
-                    setError('')
-                }, 5000)
-                return setError("Please Enter Correct Password!")
-            }
-        })
+            .then(result => {
+                console.log('result:', result)
+                navigate('/')
+            })
+            .catch(err => {
+                setError(err)
+                if (err.code === 'auth/user-not-found') {
+                    setInterval(() => {
+                        setError('')
+                    }, 5000)
+                    return setError('User not found!')
+                } else if (err.code === 'auth/wrong-password') {
+                    setInterval(() => {
+                        setError('')
+                    }, 5000)
+                    return setError("Please Enter Correct Password!")
+                }
+            })
     };
 
     const logout = () => {
@@ -89,21 +88,8 @@ const UserAuthContext = ({ children }) => {
         };
     }, []);
 
-    useEffect(() => {
-        const q = query(collection(db, 'user'));
-        const unsub = onSnapshot(q, (snapshot) => {
-            snapshot.forEach((doc) => {
-                setUserDetails({
-                    ...doc.data(),
-                    id: doc.id
-                })
-            });
-        })
-        return () => unsub();
-    }, []);
-
     return (
-        <userContext.Provider value={{ signUp, user, userDetails, logout, signIn, error }}>
+        <userContext.Provider value={{ signUp, user, logout, signIn, error }}>
             {children}
         </userContext.Provider>
     );

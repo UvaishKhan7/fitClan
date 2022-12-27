@@ -1,15 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./home.css";
 import Button from "react-bootstrap/esm/Button";
 import barbellicon from '../../assets/Barbell.svg'
 import dieticon from '../../assets/icons8-diet-20.png'
 import { Link } from "react-router-dom";
 import { UserAuth } from "../../UserAuthContext";
+import { doc, onSnapshot } from "firebase/firestore";
+import db from "../../firebase";
 
 export default function Home() {
 
-  const { userDetails } = UserAuth();
-  
+  const [userDetails, setUserDetails] = useState({});
+
+  const { user } = UserAuth();
+
+  useEffect(() => {
+    const docRef = doc(db, 'user', user.uid)
+
+    if (user) {
+      onSnapshot(docRef, (snapshot) => {
+        setUserDetails(snapshot.data())
+      })
+    }
+
+  }, [user])
+
   //Formula for calculating BMI
   const BMI = (userDetails.weight / ((userDetails.height / 100) * (userDetails.height / 100))).toFixed(2);
 
@@ -39,7 +54,7 @@ export default function Home() {
           <div className="cards">
             <div className="card1">
               <h6>BMI (Body Mass Index)</h6>
-              <p>Your BMI is <strong> {BMI}</strong></p>
+              <p>Your BMI is <strong> { }</strong></p>
             </div>
             <div className="card1">
               <h6>BMR (Basal Metabolic Rate)</h6>
@@ -89,6 +104,7 @@ export default function Home() {
               <li>Know you BMI</li>
               <li>Know your calories</li>
               <li>Nutrition advises</li>
+              <li>Achieve your goal</li>
             </ul>
             <div className="buttonDiv">
               <Link to='/diet'><Button variant='warning'>Get Start <img src={dieticon} alt="icon"></img></Button></Link>

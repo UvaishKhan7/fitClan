@@ -3,7 +3,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(2px);
   box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 .rowWrapper {
@@ -17,7 +17,6 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  padding: 1rem 0;
   border-radius: 0.8rem;
   margin: auto;
 }
@@ -55,7 +54,7 @@
     border-color: transparent;
   }
   50% {
-    border-color: rgb(255, 255, 255);
+    border-color: rgb(0, 0, 0);
   }
 }
 
@@ -114,7 +113,7 @@
   backdrop-filter: blur(5px);
   box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
   padding: 1rem;
-  margin: 0.8rem;
+  margin: 1rem;
   border-radius: 0.5rem;
   color: rgb(231, 231, 231);
   text-shadow: 2px 0px rgba(39, 39, 39, 0.388);
@@ -123,6 +122,7 @@
   justify-content: center;
   align-items: center;
   width: 250px;
+  height: 220px;
   text-align: left;
 }
 
@@ -168,6 +168,7 @@
   .cards {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
     gap: 0.8rem;
     margin: 1rem 1rem;
     margin-bottom: 0.5rem;
@@ -181,7 +182,7 @@
     padding: 1rem 2rem;
     width: max-content;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     border-radius: 0.5rem;
     margin: 1rem;
     margin-top: 0.5rem;
@@ -193,8 +194,9 @@
     margin: 1rem;
     font-size: 0.8rem;
     display: grid;
-    width: max-content;
+    width: 160px;
     place-items: center;
+    height: 190px;
   }
   .buttonDiv {
     width: 150px;

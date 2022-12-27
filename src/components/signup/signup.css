@@ -1,19 +1,46 @@
 .signup {
-  padding: 1rem 2rem;
-  margin: 2rem auto;
-  width: 500px;
+  margin: 0;
   color: white;
-  position: relative;
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem 0;
+}
+
+.signupWrapp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+  padding: 1.2rem 4rem;
+  border-radius: 1rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  box-shadow: 20px 20px 10px -6px rgba(0, 0, 0, 0.5);
+}
+
+.signupWrapp > hr {
+  margin: 1rem 4rem;
+  height: 27rem;
+  border-left: 1px solid gray;
+}
+
+.imgWrap {
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #bb84e8;
+  font-size: 12px;
+}
+
+.signupWrapp > .imgWrap > img {
+  object-fit: contain;
+  margin-bottom: 10px;
+  width: 15rem;
 }
 
 .signup_form {
+  margin: 1rem auto;
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 480px;
 }
 
 .signup_title {
@@ -50,6 +77,7 @@
 .signup_form > .input_field_nested > .input {
   width: 100%;
   background: rgba(117, 117, 117, 0.288);
+  backdrop-filter: blur(5px);
   outline: none;
   border-radius: 0.5rem;
   padding: 12px 15px;
@@ -76,7 +104,7 @@
 
 .signup_form .input_field input[type="submit"] {
   color: rgb(255, 254, 254);
-  background: rgba(204, 0, 255, 0.233);
+  background: #471aa0;
   width: 100%;
   font-size: 16px;
   margin-bottom: 0.5rem;
@@ -84,7 +112,7 @@
   text-transform: uppercase;
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  height: 2.2rem;
+  height: 3rem;
   border-radius: 0.5rem;
 }
 
@@ -94,7 +122,29 @@
 
 @media screen and (max-width: 600px) {
   .signup {
-    width: 350px;
-    margin: 1rem auto;
+    padding: 0;
+    margin: 0;
+  }
+  .signup_form {
+    width: 100%;
+  }
+  .signupWrapp {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 1rem;
+  }
+  .imgWrap > img {
+    height: 8rem;
+    width: 8rem;
+  }
+  .imgWrap > p {
+    margin-bottom: 0;
+    font-weight: 600;
+    font-size: 10px;
+  }
+  .signupWrapp > hr {
+    display: none;
   }
 }

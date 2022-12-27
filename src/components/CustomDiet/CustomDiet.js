@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./CustomDiet.css";
 import { BsSearch } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
@@ -31,23 +31,27 @@ const CustomDiet = ({ foodData }) => {
   //fromula for calculating daily Fat intake
   const dailyFat = (caloriePerDay * (30 / 100)).toFixed(2);
 
-  const data = [];
-
-  for (let i = 1; i <= userDetails.meals; i++) {
-    data.push(
-      { mealNo: i, items: [] }
-    )
-  }
-
   const [searchedData, setsearchedData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
   // eslint-disable-next-line
-  const [mealdata, setmealdata] = useState(data)
+  const [mealdata, setmealdata] = useState([])
   const [selectedMeal, setSelectedMeal] = useState(1);
   const [totalCal, setTotalCal] = useState(0);
   const [totalProtein, setTotalProtein] = useState(0);
   const [totalCarbohydrate, setTotalCarbohydrate] = useState(0);
   const [totalFat, setTotalFat] = useState(0);
+
+  useEffect(() => {
+    const data = [];
+    console.log("userDetails", userDetails)
+  
+    for (let i = 1; i <= userDetails.meals; i++) {
+      data.push(
+        { mealNo: i, items: [] }
+      )
+    }
+    setmealdata(data)
+  }, [userDetails])
 
   //mui table
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
