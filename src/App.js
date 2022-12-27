@@ -26,8 +26,8 @@ function App() {
               <Home />
             </ProtectedRoute>
           } />
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/landing' element={<LandingPage />} />
+          <Route path='/signup' element={<AuthenticatedRoute><Signup /></AuthenticatedRoute>} />
+          <Route path='/landing' element={<AuthenticatedRoute><LandingPage /></AuthenticatedRoute>} />
           <Route path='/login' element={
             <AuthenticatedRoute><Login /></AuthenticatedRoute>} />
           <Route path='/account' element={
