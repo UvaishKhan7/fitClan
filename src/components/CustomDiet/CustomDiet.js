@@ -11,10 +11,25 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { UserAuth } from "../../UserAuthContext";
+import { doc, onSnapshot } from "firebase/firestore";
+import db from "../../firebase";
 
 const CustomDiet = ({ foodData }) => {
 
-  const { userDetails } = UserAuth();
+  const [userDetails, setUserDetails] = useState({});
+
+  const { user } = UserAuth();
+
+  useEffect(() => {
+    const docRef = doc(db, 'user', user.uid)
+
+    if (user) {
+      onSnapshot(docRef, (snapshot) => {
+        setUserDetails(snapshot.data())
+      })
+    }
+
+  }, [user])
 
   //Formula for calculating calorie/day
   const caloriePerDay = userDetails.gender === 'male' ?
@@ -43,7 +58,6 @@ const CustomDiet = ({ foodData }) => {
 
   useEffect(() => {
     const data = [];
-    console.log("userDetails", userDetails)
   
     for (let i = 1; i <= userDetails.meals; i++) {
       data.push(
