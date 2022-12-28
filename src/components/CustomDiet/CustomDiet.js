@@ -58,7 +58,7 @@ const CustomDiet = ({ foodData }) => {
 
   useEffect(() => {
     const data = [];
-  
+
     for (let i = 1; i <= userDetails.meals; i++) {
       data.push(
         { mealNo: i, items: [] }
@@ -132,15 +132,45 @@ const CustomDiet = ({ foodData }) => {
 
   return (
     <>
-      {/* <CalorieCalculator setnumberofMeals={setnumberofMeals} /> */}
+      {/* Table for showing required macros & your plan macros */}
+      <div className="totalMacro">
+        <TableContainer component={Paper}>
+          <Table aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell>Macro</StyledTableCell>
+                <StyledTableCell align="right">Your Plan</StyledTableCell>
+                <StyledTableCell align="right">Recommended</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <StyledTableRow key={row.name}>
+                  <StyledTableCell component="th" scope="row">
+                    <strong>{row.name}</strong>
+                  </StyledTableCell>
+                  <StyledTableCell align="right">{row.calories}</StyledTableCell>
+                  <StyledTableCell align="right">{row.fat}</StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+
+      {/* Dropdown for selecting meal & search bar for searching food items */}
       <div className="searchNadd">
+
+        {/* Meal selection dropdown */}
         <div className="mealSelector">
           <select onChange={(e) => setSelectedMeal(e.target.value)}>
             {mealdata.map((options, name) => {
-              return (<option key={name} value={options.mealNo}>meal{options.mealNo}</option>)
+              return (<option key={name} value={options.mealNo} className='meal_dropdown'>Meal {options.mealNo}</option>)
             })}
           </select>
         </div>
+
+        {/* food item search bar */}
         <div className="searchbar">
           <div className="searchinput">
             <input className="mealinput"
@@ -192,38 +222,6 @@ const CustomDiet = ({ foodData }) => {
             </div>
           )
         })}
-      </div>
-      <div className="totalMacro">
-
-        <TableContainer component={Paper}>
-          <Table aria-label="customized table">
-            <TableHead>
-              <TableRow>
-                <StyledTableCell>Macro</StyledTableCell>
-                <StyledTableCell align="right">Your Plan</StyledTableCell>
-                <StyledTableCell align="right">Recommended</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <StyledTableRow key={row.name}>
-                  <StyledTableCell component="th" scope="row">
-                    <strong>{row.name}</strong>
-                  </StyledTableCell>
-                  <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                  <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-
-        {/* <h2>Total Macro</h2>
-        <h3>Calories : {totalCal} kcal</h3>
-        <h3>Proteins : {totalCal} g</h3>
-        <h3>Carbohydrate : {totalCal} g</h3>
-        <h3>Fat : {totalCal} g</h3> */}
-
       </div>
     </>
   );

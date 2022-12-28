@@ -10,9 +10,18 @@ export default function Diet() {
   function showDietMaker() {
     setShowPlan(!showPlan)
   }
-  
+
   return (
     <div className='diet  p-5'>
+
+
+      <div className='dietHeading' id='createplan'>
+        {!showPlan ? <h2>Want to create your own diet plan?</h2> : <h2 className='custPlan'>Customise Your Diet Plan</h2>}
+        {!showPlan && <a href='#createplan'><div className='createPlan' onClick={showDietMaker}>Create</div></a>}
+      </div>
+      {showPlan && <CustomDiet foodData={foodData} />}
+
+      <br></br>
       <h2>Common diet plans</h2>
       <div className='commonDiet'>
 
@@ -32,13 +41,6 @@ export default function Diet() {
         </div>
 
       </div>
-      <br></br>
-      <div className='dietHeading' id='createplan'>
-        {!showPlan ? <h2>Want to create your own diet plan?</h2> : <h2>Custom plan</h2>}
-        {!showPlan && <a href='#createplan'><div className='createPlan' onClick={showDietMaker}>Create</div></a>}
-
-      </div>
-      {showPlan && <CustomDiet foodData={foodData} />}
     </div>
   )
 }

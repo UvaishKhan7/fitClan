@@ -19,20 +19,18 @@ function Header() {
   const navigate = useNavigate();
 
   useEffect(() => {
-
     if (user) {
       onSnapshot(doc(db, 'user', user.uid), (snapshot) => {
         setUserDetails(snapshot.data())
       })
     }
-
+    // eslint-disable-next-line
   }, [user])
 
   const handleLogout = async () => {
     try {
       await logout();
       navigate('/login')
-      window.location.reload();
     } catch (e) {
       console.log(e.message)
     }
@@ -66,7 +64,7 @@ function Header() {
             <Navbar.Text className='navTitles'>
               {
                 !(user) ? <Link to='/login'>LOGIN</Link> :
-                  (<NavDropdown id="nav-dropdown-dark-example" title={`Hello ${userDetails.username}`} menuVariant="dark">
+                  (<NavDropdown id="nav-dropdown-dark-example" title={`Hello ${userDetails?.username}`} menuVariant="dark">
                     <NavDropdown.Item as={Link} to='/account'>
                       Account
                     </NavDropdown.Item>

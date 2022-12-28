@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../../UserAuthContext';
 import './login.css';
@@ -22,6 +22,15 @@ export default function Login() {
         setUser((pre) => ({ ...pre, [name]: value }))
     };
 
+    useEffect(() => {
+        if (error) {
+            setInterval(() => {
+                setBackError('')
+            }, 3000)
+            setBackError(error)
+        }
+    }, [error])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { email, password } = user
@@ -36,7 +45,7 @@ export default function Login() {
             navigate('/')
         } catch (err) {
             setInterval(() => {
-                setBackError(`${err.message}`)
+                setError(`${err.message}`)
             }, 5000)
             return setError('Please fill all the fields!')
         }
@@ -45,8 +54,8 @@ export default function Login() {
     return (
         <div className='login'>
             {
-                error ? (
-                    error && <p className='error'>{error}</p>
+                err ? (
+                    err && <p className='error'>{err}</p>
                 ) : (
                     backError && <p className='error'>{backError}</p>
                 )

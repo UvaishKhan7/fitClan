@@ -24,6 +24,13 @@
   padding: 1rem 4rem;
 }
 
+.custPlan{
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  backdrop-filter: blue(5px);
+}
+
 .commonDiet {
   width: 70%;
   margin: auto;

@@ -13,9 +13,8 @@
 }
 
 .detailsWrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   text-align: center;
   border-radius: 0.8rem;
   margin: auto;
@@ -99,11 +98,12 @@
   font-size: 1rem;
   background-size: cover;
   display: flex;
+  width: 90%;
   justify-content: center;
   align-items: center;
   border-radius: 0.5rem;
-  margin: 1rem;
   padding: 1rem 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .Getstarted-Diet,
@@ -121,14 +121,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 250px;
-  height: 220px;
+  width: 40%;
+  height: 200px;
   text-align: left;
 }
 
 .Getstarted-Workout:hover,
 .Getstarted-Diet:hover {
   background-color: rgba(31, 31, 31, 0.634);
+}
+
+.smallscreen {
+  display: none;
 }
 
 .buttonDiv {
@@ -153,55 +157,64 @@
     margin: 0 auto;
     padding: 0px;
   }
-  .homeContainer{
-    padding-top: 1rem;
+  .homeContainer {
+    padding-top: 0;
     padding-bottom: 0;
   }
   .detailsWrapper {
-    margin: 0 auto;
+    display: grid;
+    place-items: center;
     padding: 0px;
   }
   .detailsWrapper > h5 {
     font-size: 0.7rem;
-    margin: 0 1rem;
+    width: 95%;
   }
   .cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 0.8rem;
-    margin: 1rem 1rem;
-    margin-bottom: 0.5rem;
+    width: 95%;
+    margin-bottom: 1rem;
   }
   .card1 {
-    width: 170px;
+    width: 48%;
     font-size: 0.8rem;
   }
   .GetstartedWrapper {
     background-color: rgba(0, 0, 0, 0.5);
-    padding: 1rem 2rem;
-    width: max-content;
+    width: 95%;
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
     border-radius: 0.5rem;
-    margin: 1rem;
-    margin-top: 0.5rem;
+    margin: 1rem 0;
+    padding: 0.5rem;
   }
-  .Getstarted-Workout,
-  .Getstarted-Diet {
-    list-style: none;
-    text-align: left;
-    margin: 1rem;
-    font-size: 0.8rem;
-    display: grid;
-    width: 160px;
-    place-items: center;
-    height: 190px;
+  .Getstarted-Workout > ul,
+  .Getstarted-Diet > ul {
+    display: none;
+  }
+  .Getstarted-Diet,
+  .Getstarted-Workout {
+    width: 165px;
+    margin: 0.25rem;
+    height: 10rem;
+    padding: 0;
+  }
+  .smallscreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0.5rem;
   }
   .buttonDiv {
-    width: 150px;
+    width: 140px;
     display: grid;
     place-items: center;
+    margin-bottom: 0.5rem;
   }
   .buttonDiv > Button {
     font-size: 0.7rem;

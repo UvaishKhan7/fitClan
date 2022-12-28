@@ -6,9 +6,10 @@ import FitClan from '../../assets/logo.png';
 
 export default function Signup() {
 
-    const { signUp, error, currentUser } = UserAuth();
-    const navigate = useNavigate();
+    const { signUp, error } = UserAuth(); //importing signUp function & error from contextAPI global state
+    const navigate = useNavigate(); //importing useNavigate for the use of navigation after form submit
 
+    //creating states for catching errors & saving user details
     const [err, setErr] = useState('');
     const [backError, setBackError] = useState('')
     const [user, setUser] = useState({
@@ -31,15 +32,17 @@ export default function Signup() {
             }, 3000)
             setBackError(error)
         }
-    }, [error, currentUser])
+    }, [error])
 
+    //created a function to store the input values to the related keys
     const userHandler = (e) => {
         const { name, value } = e.target;
         setUser((pre) => ({ ...pre, [name]: value }))
     }
 
+    //created a function to handle the submit form
     const submitHandler = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); //used to prevent the page from reloading on submit
         const { email, password, confirmPassword, username, gender, age, weight, height, meals, activityLevel } = user
         if (email === '' || password === '' || confirmPassword === '' || username === '' || gender === '' || age === '' || weight === '' || height === '' || meals === '' || activityLevel === '') {
             setInterval(() => {
@@ -60,8 +63,9 @@ export default function Signup() {
             return setErr("Password must be 6 characters or more!")
         }
         else {
+            //calling the singUp function from firebase to register the user & send the data to firestore
             signUp(email, password, username, gender, age, weight, height, meals, activityLevel)
-            currentUser && setUser({
+            setUser({
                 email: '',
                 password: '',
                 confirmPassword: '',
@@ -74,16 +78,16 @@ export default function Signup() {
                 activityLevel: ''
             })
         }
-        navigate('/')
-        window.location.reload();
+        navigate('/'); //navigate to home route after the user registered successfully.
     }
 
     return (
         <div className='signup'>
-            {
+            {/* below err & backError is used to catch any error locally or from firebase respectively */}
+            {   
                 err ? (
                     err && <p className="error">{err}</p>
-                ) : (
+                ) : ( 
                     backError && <p className="error">{backError}</p>
                 )
             }

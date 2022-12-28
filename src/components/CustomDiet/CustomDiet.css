@@ -1,42 +1,41 @@
 .searchbar {
   width: 350px;
   position: relative;
-  background: rgba(68, 68, 68, 0.684);
+  background: rgba(0, 0, 0, 0.5);
   box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 5px;
-  justify-content: center;
+  font-size: 1.25rem;
+  justify-content: space-between;
   left: 0;
   right: 0;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 0 0.25rem;
 }
 .searchNadd {
-  display: block;
-  justify-content: center;
-  margin: 0;
+  display: grid;
+  place-items: center;
+  margin: 1rem;
   padding: 0;
 }
 .mealinput {
-  width: 100%;
-  background: rgba(117, 117, 117, 0.288);
+  width: 100%;  background: transparent;
   outline: none;
   border-radius: 0.5rem;
   padding: 5px 5px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
   font-size: 16px;
   letter-spacing: 1px;
   color: #fff;
-
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  border: none;
 }
 
-.searchinput::placeholder {
-  color: rgba(255, 255, 255, 0.8);
+.mealinput::placeholder {
+  color: white;
   text-transform: capitalize;
   font-size: smaller;
 }
 .searchinput {
-  padding: 10px;
+  padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -48,7 +47,6 @@
 }
 
 .searchicon {
-  margin: 10px;
   cursor: pointer;
   fill: rgb(255, 255, 255);
 }
@@ -74,14 +72,17 @@
   background-color: rgb(100, 100, 100);
 }
 .mealSelector {
-  margin-bottom: 1rem;
-  position: relative;
+  margin: 1rem 0;
+  width: 100%;
+  box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
 }
 .mealSelector select {
+  height: 3rem;
   padding: 5px 15px;
   border-radius: 4px;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
+  width: 100%;
 }
 .addButton {
   height: 30px;
@@ -148,7 +149,6 @@
 }
 .totalMacro {
   width: 70%;
-  margin-top: 2rem;
   text-align: left;
   box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
   border: 1px solid black;
@@ -180,5 +180,14 @@
   .totalMacro {
     width: 95%;
     margin: 1rem;
+  }
+  .mealSelector{
+    width: 100%;
+  }
+  .mealSelector>select{
+    width: 100%;
+  }
+  .meal_dropdown{
+    width: 50%;
   }
 }

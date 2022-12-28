@@ -23,6 +23,7 @@ export default function Home() {
       })
     }
 
+    // eslint-disable-next-line
   }, [user])
 
   //Formula for calculating BMI
@@ -50,6 +51,39 @@ export default function Home() {
     <div className="homeContainer">
       <div className="rowWrapper">
         <div className="detailsWrapper">
+
+          {/* Get Starter buttons */}
+          <div className="GetstartedWrapper">
+            <div className="Getstarted-Diet">
+              <ul style={{ listStyle: 'circle' }}>
+                <li>Free workout plans</li>
+                <li>Know your workout</li>
+                <li>Home/gym workouts</li>
+                <li>Achieve your goal</li>
+              </ul>
+              <div className="smallscreen">
+                Create Your Personalised Exercise Plan
+              </div>
+              <div className="buttonDiv">
+                <Link to='/exercise'><Button variant='warning'>Get Start <img src={barbellicon} alt="icon" width={35}></img></Button></Link>
+              </div>
+            </div>
+            <div className="Getstarted-Workout">
+              <ul style={{ listStyle: 'circle' }}>
+                <li>Get diet plans</li>
+                <li>Know you BMI</li>
+                <li>Know your calories</li>
+                <li>Nutrition advises</li>
+              </ul>
+              <div className="smallscreen">
+                Create Your Personalised Diet Plan
+              </div>
+              <div className="buttonDiv">
+                <Link to='/diet'><Button variant='warning'>Get Start <img src={dieticon} alt="icon"></img></Button></Link>
+              </div>
+            </div>
+          </div>
+
           <h5>Hey {userDetails?.username}! Please see your fitness status.</h5>
           <div className="cards">
             <div className="card1">
@@ -82,32 +116,6 @@ export default function Home() {
                   }
                 </strong>
               </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="GetstartedWrapper">
-          <div className="Getstarted-Diet">
-            <ul style={{ listStyle: 'circle' }}>
-              <li>Free workout plans</li>
-              <li>Know your workout</li>
-              <li>Home/gym workouts</li>
-              <li>Achieve your goal</li>
-            </ul>
-            <div className="buttonDiv">
-              <Link to='/exercise'><Button variant='warning'>Get Start <img src={barbellicon} alt="icon" width={35}></img></Button></Link>
-            </div>
-          </div>
-          <div className="Getstarted-Workout">
-            <ul style={{ listStyle: 'circle' }}>
-              <li>Get diet plans</li>
-              <li>Know you BMI</li>
-              <li>Know your calories</li>
-              <li>Nutrition advises</li>
-              <li>Achieve your goal</li>
-            </ul>
-            <div className="buttonDiv">
-              <Link to='/diet'><Button variant='warning'>Get Start <img src={dieticon} alt="icon"></img></Button></Link>
             </div>
           </div>
         </div>
