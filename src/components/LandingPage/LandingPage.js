@@ -18,14 +18,14 @@ export default function LandingPage() {
             <li>Calculate BMI, BMR, BFP, IBW etc.</li>
             <li>Get The Nutrition Details Of Food Items.</li>
           </ul>
-        </div>
-        <div className="login_btn">
-          <Link to='/signup'>
-            <button>Signup</button>
-          </Link>
-          <Link to='/login'>
-            <button>Login</button>
-          </Link>
+          <div className="login_btn">
+            <Link to='/signup'>
+              <button>Signup</button>
+            </Link>
+            <Link to='/login'>
+              <button>Login</button>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { AuthErrorCodes } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
+import { AuthErrorCodes, browserSessionPersistence, setPersistence } from 'firebase/auth';
+import { doc, onSnapshot, setDoc } from 'firebase/firestore';
 import db, {
     auth, createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -19,6 +19,15 @@ const UserAuthContext = ({ children }) => {
     // eslint-disable-next-line
     const [error, setError] = useState('');
     const [user, setUser] = useState();
+    const [userDetails, setUserDetails] = useState({});
+    const [BMI, setBMI] = useState(null);
+    const [BMRMen, setBMRMen] = useState(null);
+    const [BMRWomen, setBMRWomen] = useState(null);
+    const [BFPMen, setBFPMen] = useState(null);
+    const [BFPWomen, setBFPWomen] = useState(null);
+    const [IBWMen, setIBWMen] = useState(null);
+    const [IBWWomen, setIBWWomen] = useState(null);
+
     const navigate = useNavigate();
 
     const signUp = (email, password, username, gender, age, weight, height, meals, activityLevel) => {
@@ -54,9 +63,9 @@ const UserAuthContext = ({ children }) => {
 
     const signIn = (email, password) => {
         setError('');
-        signInWithEmailAndPassword(auth, email, password)
-            .then(result => {
-                console.log('result:', result)
+        setPersistence(auth, browserSessionPersistence)
+            .then(() => {
+                signInWithEmailAndPassword(auth, email, password)
                 navigate('/')
             })
             .catch(err => {
@@ -81,15 +90,52 @@ const UserAuthContext = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+
             setUser(currentUser);
+
+                const docRef = doc(db, 'user', currentUser.uid);
+                onSnapshot(docRef, (snapshot) => {
+                    setUserDetails(snapshot.data())
+                
+                //Formula for calculating BMI
+                setBMI(Math.round((snapshot.data().weight / ((snapshot.data().height / 100) * (snapshot.data().height / 100)))*100)/100);
+
+                //Formula for calculating BMR for men
+                setBMRMen(Math.round((88.362 + (13.397 * snapshot.data().weight) + (4.799 * snapshot.data().height) - (5.677 * snapshot.data().age))*100)/100);
+
+                //Formula for calculating BMR for women 
+                setBMRWomen(Math.round((447.593 + (9.247 * snapshot.data().weight) + (3.098 * snapshot.data().height) - (4.330 * snapshot.data().age))*100)/100);
+
+                //Formula for calculating BFP for men 
+                const BMIdata = (snapshot.data().weight / ((snapshot.data().height / 100) * (snapshot.data().height / 100)))
+                setBFPMen(Math.round(((1.20 * BMIdata) + (0.23 * snapshot.data().age) - 16.2)*100)/100);
+
+                //Formula for calculating BFP for women
+                setBFPWomen(Math.round(((1.20 * BMIdata) + (0.23 * snapshot.data().age) - 5.4)*100)/100);
+
+                //Formula for calculating IBW for Men
+                setIBWMen(Math.round((22 * ((snapshot.data().height / 100) * (snapshot.data().height / 100)))*100)/100);
+
+                //Formula for calculating IBW for women
+                setIBWWomen(Math.round((22 * (((snapshot.data().height / 100) * (snapshot.data().height / 100)) - 10))*100)/100);
+            })
+            
+            if (!user) {
+                navigate('/landing')
+            } else {
+                navigate('/')
+            }
+
         });
+
         return () => {
             unsubscribe();
         };
+        // eslint-disable-next-line
     }, []);
 
     return (
-        <userContext.Provider value={{ signUp, user, logout, signIn, error }}>
+        <userContext.Provider value={{ signUp, user, userDetails, logout, signIn, error, BMI, BMRMen, BMRWomen, BFPMen, BFPWomen, IBWMen, IBWWomen }}>
             {children}
         </userContext.Provider>
     );
