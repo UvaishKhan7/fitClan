@@ -66,6 +66,11 @@
 }
 
 .card1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 1rem;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
   width: 200px;
@@ -83,7 +88,6 @@
 
 .card1 > h6 {
   font-size: 14px;
-  margin: 1rem 0;
 }
 
 .card1 > p {

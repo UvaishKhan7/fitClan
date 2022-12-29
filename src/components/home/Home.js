@@ -5,47 +5,10 @@ import barbellicon from '../../assets/Barbell.svg'
 import dieticon from '../../assets/icons8-diet-20.png'
 import { Link } from "react-router-dom";
 import { UserAuth } from "../../UserAuthContext";
-//import { doc, onSnapshot } from "firebase/firestore";
-//import db from "../../firebase";
 
 export default function Home() {
 
- // const [userDetails, setUserDetails] = useState({});
-
   const { userDetails, BMI, BMRMen, BMRWomen, BFPMen, BFPWomen, IBWMen, IBWWomen } = UserAuth();
-  
-  // useEffect(() => {
-  //   const docRef = doc(db, 'user', user.uid)
-
-  //   if (user) {
-  //     onSnapshot(docRef, (snapshot) => {
-  //       setUserDetails(snapshot.data())
-  //     })
-  //   }
-
-  //   // eslint-disable-next-line
-  // }, [user])
-
-  // //Formula for calculating BMI
-  // const BMI = (userDetails.weight / ((userDetails.height / 100) * (userDetails.height / 100))).toFixed(2);
-
-  // //Formula for calculating BMR for men
-  // const BMRMen = (88.362 + (13.397 * userDetails.weight) + (4.799 * userDetails.height) - (5.677 * userDetails.age)).toFixed(2);
-
-  // //Formula for calculating BMR for women 
-  // const BMRWomen = (447.593 + (9.247 * userDetails.weight) + (3.098 * userDetails.height) - (4.330 * userDetails.age)).toFixed(2);
-
-  // //Formula for calculating BFP for men 
-  // const BFPMen = ((1.20 * BMI) + (0.23 * userDetails.age) - 16.2).toFixed(2);
-
-  // //Formula for calculating BFP for women
-  // const BFPWomen = ((1.20 * BMI) + (0.23 * userDetails.age) - 5.4).toFixed(2);
-
-  // //Formula for calculating IBW for Men
-  // const IBWMen = (22 * ((userDetails.height / 100) * (userDetails.height / 100))).toFixed(2);
-
-  // //Formula for calculating IBW for women
-  // const IBWWomen = (22 * (((userDetails.height / 100) * (userDetails.height / 100)) - 10)).toFixed(2);
 
   return (
     <div className="homeContainer">
@@ -87,19 +50,30 @@ export default function Home() {
           <h5>Hey {userDetails?.username}! Please see your fitness status.</h5>
           <div className="cards">
             <div className="card1">
-              <h6>BMI (Body Mass Index)</h6>
-              <p>Your BMI is <strong> { BMI }</strong></p>
+              <h6>BMI
+                <br />
+                (Body Mass Index)</h6>
+              <p>
+                <strong>{BMI}</strong>
+              </p>
             </div>
             <div className="card1">
-              <h6>BMR (Basal Metabolic Rate)</h6>
+              <h6>BMR
+                <br />
+                (Basal Metabolic Rate)</h6>
               <p>
                 <strong>
-                  {(userDetails.gender === 'male') ? (BMRMen) : (BMRWomen)}
-                </strong> calories/day</p>
+                  {
+                    (userDetails.gender === 'male') ? (BMRMen) : (BMRWomen)
+                  } calories/day
+                </strong>
+              </p>
             </div>
             <div className="card1">
-              <h6>BFP (Body Fat Percentage)</h6>
-              <p>Your BFP is &nbsp;
+              <h6>BFP
+                <br />
+                (Body Fat Percentage)</h6>
+              <p>
                 <strong className=''>
                   {
                     (userDetails.gender === 'male') ? (BFPMen) : (BFPWomen)
@@ -108,8 +82,10 @@ export default function Home() {
               </p>
             </div>
             <div className="card1">
-              <h6>IBW (Ideal Body Weight)</h6>
-              <p>Your IBW is &nbsp;
+              <h6>IBW
+                <br />
+                (Ideal Body Weight)</h6>
+              <p>
                 <strong className=''>
                   {
                     (userDetails.gender === 'male') ? (IBWMen) : (IBWWomen)
@@ -117,8 +93,8 @@ export default function Home() {
                 </strong>
               </p>
             </div>
-          </div>
         </div>
+          </div>
       </div>
     </div>
   )

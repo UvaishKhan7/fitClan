@@ -11,25 +11,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { UserAuth } from "../../UserAuthContext";
-import { doc, onSnapshot } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import db from "../../firebase";
 
 const CustomDiet = ({ foodData }) => {
 
-  const [userDetails, setUserDetails] = useState({});
-
-  const { user } = UserAuth();
-
-  useEffect(() => {
-    const docRef = doc(db, 'user', user.uid)
-
-    if (user) {
-      onSnapshot(docRef, (snapshot) => {
-        setUserDetails(snapshot.data())
-      })
-    }
-
-  }, [user])
+  const { user, userDetails } = UserAuth();
 
   //Formula for calculating calorie/day
   const caloriePerDay = userDetails.gender === 'male' ?
@@ -112,15 +99,24 @@ const CustomDiet = ({ foodData }) => {
   const handleClear = () => {
     setsearchedData([]);
     setWordEntered("");
-    console.log(mealdata[selectedMeal - 1].mealNo)
   };
 
-  const additem = (item) => {
+  const additem = async (item) => {
+    
+    if (item) {
+      const mealColRef = collection(db, "user", user.uid, 'meal');
+      await addDoc(mealColRef, {
+        name: item.name,
+        carbs: item.carbohydrate,
+        protein: item.proteins,
+        fat: item.fat,
+        calory: item.calories
+      })
+    }
 
     for (let i = 0; i < mealdata.length; i++) {
       if (selectedMeal - 1 === i) {
         mealdata[i].items.push({ item });
-        console.log("in meal1", mealdata[0].items, "in meal2", mealdata[1].items, "in meal3", mealdata[2].items);
       }
     }
     setTotalCal(totalCal + item.calories)
@@ -189,12 +185,10 @@ const CustomDiet = ({ foodData }) => {
             <div className="searchresults">
               {searchedData.slice(0, 10).map((item, name) => {
                 return (
-                  <div key={name} className="resultsList">
-                    <div>
-                      <strong>{item.name.toUpperCase()}</strong>
-                      <span style={{ fontSize: '12px', color: 'grey' }}>({item.calories} kcal Protein {item.proteins}g, {item.fat}Kcal )</span>
-                    </div>
-                    <button className="addButton" onClick={e => additem(item)}>+</button>
+                  <div key={name} className="resultsList" onClick={e => additem(item)}>
+                    <strong>{item.name.toUpperCase()}</strong>
+                    <br />
+                    <span style={{ fontSize: '12px', color: 'grey' }}>({item.calories} kcal, Carbs:{item.carbohydrate}g, Protein:{item.proteins}g, Fat:{item.fat}g )</span>
                   </div>
                 );
               })}

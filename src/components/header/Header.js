@@ -1,5 +1,5 @@
 //import { Avatar, Button } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, useNavigate } from 'react-router-dom';
@@ -8,24 +8,11 @@ import LOGO from '../../assets/logo.png';
 import './header.css';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { UserAuth } from '../../UserAuthContext';
-import { doc, onSnapshot } from 'firebase/firestore';
-import db from '../../firebase';
 
 function Header() {
 
-  const [userDetails, setUserDetails] = useState({});
-
-  const { user, logout } = UserAuth();
+  const { user, userDetails, logout } = UserAuth();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (user) {
-      onSnapshot(doc(db, 'user', user.uid), (snapshot) => {
-        setUserDetails(snapshot.data())
-      })
-    }
-    // eslint-disable-next-line
-  }, [user])
 
   const handleLogout = async () => {
     try {

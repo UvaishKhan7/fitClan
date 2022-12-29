@@ -1,5 +1,5 @@
 .searchbar {
-  width: 350px;
+  width: 70%;
   position: relative;
   background: rgba(0, 0, 0, 0.5);
   box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
@@ -12,13 +12,17 @@
   padding: 0 0.25rem;
 }
 .searchNadd {
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
   margin: 1rem;
   padding: 0;
+  width: 100%;
 }
 .mealinput {
-  width: 100%;  background: transparent;
+  width: 100%; 
+  background: transparent;
   outline: none;
   border-radius: 0.5rem;
   padding: 5px 5px;
@@ -32,12 +36,13 @@
 .mealinput::placeholder {
   color: white;
   text-transform: capitalize;
-  font-size: smaller;
+  font-size: medium;
 }
 .searchinput {
   padding: 0.5rem;
   display: flex;
   align-items: center;
+  width: 100%;
   justify-content: space-between;
 }
 
@@ -60,12 +65,14 @@
   cursor: default;
 }
 .resultsList {
-  display: flex;
-  justify-content: space-between;
   background-color: black;
   padding: 10px;
   border: 0.5px solid rgba(255, 255, 255, 0.214);
   text-align: left;
+}
+
+.resultsList>strong{
+  font-size: 1rem;
 }
 
 .resultsList:hover {
@@ -73,11 +80,11 @@
 }
 .mealSelector {
   margin: 1rem 0;
-  width: 100%;
+  width: 30%;
   box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
 }
 .mealSelector select {
-  height: 3rem;
+  height: 3.25rem;
   padding: 5px 15px;
   border-radius: 4px;
   background-color: rgba(0, 0, 0, 0.5);
