@@ -51,7 +51,7 @@ function Header() {
             <Navbar.Text className='navTitles'>
               {
                 !(user) ? <Link to='/login'>LOGIN</Link> :
-                  (<NavDropdown id="nav-dropdown-dark-example" title={`Hello ${userDetails?.username}`} menuVariant="dark">
+                  (<NavDropdown id="nav-dropdown-dark-example" title={userDetails?.username} menuVariant="dark">
                     <NavDropdown.Item as={Link} to='/account'>
                       Account
                     </NavDropdown.Item>

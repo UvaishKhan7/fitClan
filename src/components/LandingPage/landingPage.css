@@ -73,12 +73,10 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    display: grid;
-    overflow-y: scroll;
   }
   .landing__outer {
     width: 50%;
-    margin-top: 1rem;
+    height: 100vh;
   }
   .exerciseDetails img {
     height: 6rem;
@@ -95,10 +93,11 @@
   }
   .exerciseDetails ul li {
     font-size: 12px;
-    letter-spacing: 1px;
+    letter-spacing: 1.25px;
     font-weight: 300;
-    padding: 0 0.25rem;
+    padding: 0 0.5rem;
     margin-bottom: 0;
+    line-height: 1.25rem;
   }
   .login_btn {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -115,5 +114,11 @@
     text-decoration: none;
     padding: 0;
     height: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .landing__outer{
+    width: 50%;
   }
 }

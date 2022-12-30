@@ -1,0 +1,16 @@
+.exercise__plans {
+  width: 170px;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  align-items: stretch;
+  color: white;
+  border-radius: 0.5rem;
+}
+.exercise__plans > p {
+    font-size: 1rem;
+    font-weight: 400;
+}

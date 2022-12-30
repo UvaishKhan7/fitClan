@@ -1,7 +1,5 @@
 .homeContainer {
   margin: 0 auto;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(2px);
   box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
   padding: 1rem 0;
 }

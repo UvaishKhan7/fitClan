@@ -46,28 +46,28 @@ export default function Account() {
         <div className='account'>
             <div className="account_details">
                 <p>Username: <strong> {userDetails.username} </strong></p>
-                <p>Weight:<strong> {userDetails.weight} </strong></p>
-                <p>Height:<strong> {userDetails.height} </strong></p>
-                <p>Meals per day :<strong> {userDetails.meals} </strong></p>
+                <p>Weight:<strong> {userDetails.weight} Kg </strong></p>
+                <p>Height:<strong> {userDetails.height} cm</strong></p>
+                <p>Meals per day :<strong> {userDetails.meals} Times</strong></p>
                 <p>Activity level:<strong> {userDetails.activityLevel}</strong></p>
-                <p>Your BMI:<strong> {BMI} </strong></p>
-                <p>Your BMR: &nbsp;
+                <p>BMI:<strong> {BMI} </strong></p>
+                <p>BMR:
                     <strong>
-                        {(userDetails.gender === 'male') ? (BMRMen) : (BMRWomen)}
-                    </strong> calories/day
+                        {(userDetails.gender === 'male') ? (BMRMen) : (BMRWomen)} calories/day
+                    </strong>
                 </p>
-                <p>Your BFP: &nbsp;
+                <p>BFP:
                     <strong className=''>
                         {
                             (userDetails.gender === 'male') ? (BFPMen) : (BFPWomen)
-                        }
+                        } %
                     </strong>
                 </p>
-                <p>Your IBW: &nbsp;
+                <p>IBW:
                     <strong className=''>
                         {
                             (userDetails.gender === 'male') ? (IBWMen) : (IBWWomen)
-                        }
+                        } Kg
                     </strong>
                 </p>
             </div>

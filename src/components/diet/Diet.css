@@ -1,7 +1,5 @@
 .diet {
   margin: 0 auto;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(2px);
   box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
   padding: 2rem 0;
   color: white;
@@ -24,7 +22,7 @@
   padding: 1rem 4rem;
 }
 
-.custPlan{
+.custPlan {
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 0.5rem;
   padding: 1rem 2rem;
@@ -139,7 +137,7 @@
     padding: 0;
     width: 100%;
   }
-  .createPlan{
+  .createPlan {
     margin-bottom: 1rem;
   }
 }

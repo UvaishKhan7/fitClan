@@ -11,7 +11,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { UserAuth } from "../../UserAuthContext";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, onSnapshot, query } from "firebase/firestore";
 import db from "../../firebase";
 
 const CustomDiet = ({ foodData }) => {
@@ -42,6 +42,20 @@ const CustomDiet = ({ foodData }) => {
   const [totalProtein, setTotalProtein] = useState(0);
   const [totalCarbohydrate, setTotalCarbohydrate] = useState(0);
   const [totalFat, setTotalFat] = useState(0);
+  const [fetchMeal, setFetchMeals] = useState();
+  //const [mealId, setMealId] = useState();
+
+  useEffect(() => {
+    if (user.uid) {
+      const q = query(collection(db, "user", user.uid, `Meal ${selectedMeal}`));
+      onSnapshot(q, (snapshot) => {
+        setFetchMeals(snapshot.docs.map((doc) =>
+          doc.data()))
+        console.log('fetchMeal', fetchMeal[0].name)
+      });
+    }// eslint-disable-next-line
+  }, [user.id]);
+
 
   useEffect(() => {
     const data = [];
@@ -102,9 +116,9 @@ const CustomDiet = ({ foodData }) => {
   };
 
   const additem = async (item) => {
-    
+
     if (item) {
-      const mealColRef = collection(db, "user", user.uid, 'meal');
+      const mealColRef = collection(db, "user", user.uid, `Meal ${selectedMeal}`);
       await addDoc(mealColRef, {
         name: item.name,
         carbs: item.carbohydrate,
@@ -112,6 +126,7 @@ const CustomDiet = ({ foodData }) => {
         fat: item.fat,
         calory: item.calories
       })
+      console.log('mealColRef', mealColRef)
     }
 
     for (let i = 0; i < mealdata.length; i++) {
@@ -205,9 +220,17 @@ const CustomDiet = ({ foodData }) => {
             <div className="dietgGroup">
               <div className="mealButton">Meal {mealGroup.mealNo}</div>
               {mealGroup.items.map((food, foodId) => {
-
                 return (
                   <div className="dietitem" draggable>
+                    {
+                      fetchMeal?.map(() => (
+                        <>
+                          <div>{fetchMeal.name}</div>
+                          <div>{fetchMeal.calory}</div>
+                          <div>{fetchMeal.protein}</div>
+                        </>
+                      ))
+                    }
                     <div>{food.item.name.toUpperCase()}</div>
                     <div>({food.item.calories} kcal)</div>
                   </div>
