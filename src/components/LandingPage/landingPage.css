@@ -67,6 +67,10 @@
   background-color: rgb(150, 67, 245);
 }
 
+.login_btn button:visited{
+  text-decoration: none;
+}
+
 @media screen and (max-width: 600px) {
   .landing {
     background: url(../../assets/smallLanding.jpg);

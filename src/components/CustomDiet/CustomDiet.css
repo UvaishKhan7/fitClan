@@ -146,12 +146,11 @@
 .active {
   background-color: rgb(0, 81, 212);
 }
-.dietitem {
+.dietgGroup > .dietitem {
   display: flex;
   justify-content: space-between;
-  padding: 0.25rem 0.5rem;
+  padding: 0rem 0.5rem;
   background-color: rgb(31, 31, 31);
-  margin-bottom: 1px;
   align-items: center;
   color: white;
   font-size: 13px;
