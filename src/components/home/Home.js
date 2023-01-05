@@ -164,7 +164,7 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          <div className="bfp_description">
+          <div className="bfp_description_age">
             <div className="bfp_details_age">
               <ul><h6>Ideal Body Fat Percentage for Men According to Their Age:</h6>
                 <li>20-39 Years : 8-19%</li>

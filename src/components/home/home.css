@@ -152,7 +152,8 @@
 }
 
 .description,
-.bfp_description {
+.bfp_description,
+.bfp_description_age {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
@@ -276,7 +277,8 @@ ul > h6 {
     font-weight: 600;
   }
   .description,
-  .bfp_description{
+  .bfp_description,
+  .bfp_description_age {
     width: 370px;
     gap: 0rem;
     justify-content: center;
@@ -286,7 +288,7 @@ ul > h6 {
   .bfp_details_age{
     width: 370px;
   }
-  .bfp_description{
+  .bfp_description_age{
     margin-bottom: 2rem;
   }
 }
