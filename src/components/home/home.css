@@ -242,7 +242,7 @@ ul > h6 {
     background-color: rgba(0, 0, 0, 0.5);
     width: 95%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-direction: row;
     border-radius: 0.5rem;
     margin: 1rem 0;
