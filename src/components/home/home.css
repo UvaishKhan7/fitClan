@@ -151,10 +151,18 @@
   border-radius: 0.5rem;
 }
 
+.description,
+.bfp_description {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
 
-.bmr_details {
+.details,
+.bfp_details,
+.bfp_details_age {
   margin-top: 2rem;
-  padding: 1rem 2rem;
+  padding: 1rem;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
   box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
@@ -162,9 +170,38 @@
   border-radius: 0.5rem;
 }
 
-.bmr_details > ul > li {
+ul > h6 {
+  text-align: left;
+  padding-right: 2rem;
+}
+
+.details > ul > li,
+.bfp_details > ul > li,
+.bfp_details_age > ul > li {
   text-align: left;
   line-height: 2rem;
+}
+
+.bfp_details,
+.bfp_details_age {
+  width: 350px;
+  padding-top: 1.5rem;
+}
+
+.calories{
+  width: 600px;
+}
+
+.yellow {
+  color: rgb(241, 253, 74);
+}
+
+.green {
+  color: rgb(35, 255, 101);
+}
+
+.red {
+  color: rgb(253, 56, 56);
 }
 
 /* ========= Media Queries For Small Devices (Mobiles) ========= */
@@ -185,7 +222,7 @@
     padding: 0px;
   }
   .detailsWrapper > h5 {
-    font-size: 0.7rem;
+    font-size: 0.78rem;
     width: 95%;
   }
   .cards {
@@ -237,5 +274,19 @@
   .buttonDiv > Button {
     font-size: 0.7rem;
     font-weight: 600;
+  }
+  .description,
+  .bfp_description{
+    width: 370px;
+    gap: 0rem;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+  .bfp_details,
+  .bfp_details_age{
+    width: 370px;
+  }
+  .bfp_description{
+    margin-bottom: 2rem;
   }
 }
