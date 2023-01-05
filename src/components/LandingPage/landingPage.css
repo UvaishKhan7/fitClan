@@ -119,10 +119,16 @@
     padding: 0;
     height: 2.5rem;
   }
+  .login_btn button:visited{
+    text-decoration: none;
+  }
 }
 
 @media screen and (max-width: 950px) {
   .landing__outer{
     width: 50%;
+  }
+  .login_btn button:visited{
+    text-decoration: none;
   }
 }
