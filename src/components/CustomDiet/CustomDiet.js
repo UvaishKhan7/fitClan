@@ -16,6 +16,7 @@ export default function CustomDiet({ id, title }) {
   const [foodId, setFoodId] = useState();
   const { user } = UserAuth();
 
+  // handleSearch function to handle the searched food item
   const handleSearch = (e) => {
     const searchedWord = e.target.value.toLowerCase();
     setWordEntered(searchedWord);
@@ -25,7 +26,7 @@ export default function CustomDiet({ id, title }) {
     searchedWord === "" ? setsearchedData([]) : setsearchedData(filteredData);
   };
 
-
+  // adding new food item to the meal & database
   const additem = async (item) => {
 
     if (item) {
@@ -50,17 +51,17 @@ export default function CustomDiet({ id, title }) {
   }
 
   // for deleting food item
-  const deleteFoodItem = async (foodId) => {
+  const deleteFoodItem = async (id) => {
     await deleteDoc(doc(db, "user", user.uid, 'meals', id, `${title}`, foodId))
   }
 
-  const colRef = collection(db, "user", user.uid, 'meals', id, `${title}`);
-
+  // fetching the food items in a meal 
   useEffect(() => {
-    const q = query(colRef);
+    const colRef = collection(db, "user", user.uid, 'meals', id, `${title}`);
+    const q = query(colRef, orderBy("timestamp"));
     onSnapshot(q, (snapshot) => {
       setFoodItems(snapshot.docs.map((doc) =>
-        doc.data(), orderBy("timestamp")))
+        doc.data()))
     });
     // eslint-disable-next-line 
   }, []);
@@ -100,11 +101,18 @@ export default function CustomDiet({ id, title }) {
       </div>
 
       {
-        foodItems?.map(({ title, carbs, proteins, fat, calories }) => (
+        foodItems?.map(({ title, carbs, protein, fat, calory }, id={foodId}) => (
           <div key={title} className="food_list_item">
-            <div className='food_title'>{title} <button onClick={() => deleteFoodItem(foodId)} ><HiOutlineTrash className='trash' /></button></div>
+            <div className='food_title'>{title}
+              <Button type="submit" onClick={() => deleteFoodItem(id)} variant="outlined" color="error">
+                <HiOutlineTrash className='trash' />
+              </Button>
+            </div>
             <div className="macros">
-              Carbs: {carbs}g, Prot: {proteins}g, Fat: {fat}g, Cal: {calories}kCal
+              <span>Carbs: {carbs}g, </span>
+              <span>Prot: {protein}g, </span>
+              <span>Fat: {fat}g, </span>
+              <span>Cal: {calory}kCal</span>
             </div>
           </div>
         ))

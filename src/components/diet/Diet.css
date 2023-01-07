@@ -35,7 +35,7 @@
 }
 
 .meal_name_input {
-  width: 400px;
+  width: 360px;
   margin-top: 1rem;
   margin-bottom: 1.5rem;
   background-color: rgba(0, 0, 0, 0.5);
@@ -178,7 +178,7 @@
     width: 150px;
   }
   .custom_diet_items {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    place-items: center;
   }
 }
