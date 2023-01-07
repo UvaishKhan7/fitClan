@@ -1,24 +1,53 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Diet.css'
-import foodData from '../../foodData.json'
 import CustomDiet from '../CustomDiet/CustomDiet';
+import db from '../../firebase';
+import { addDoc, collection, onSnapshot, orderBy, serverTimestamp } from 'firebase/firestore';
+import { UserAuth } from '../../UserAuthContext';
 
 export default function Diet() {
 
-  const [showPlan, setShowPlan] = useState(false);
+  const [meals, setMeals] = useState([]);
 
-  function showDietMaker() {
-    setShowPlan(!showPlan)
-  }
+  const { user } = UserAuth();
+
+  const addMeal = async () => {
+    const mealName = prompt("Please enter new meal name");
+
+    if (mealName) {
+      const dbRef = collection(db, 'user', user.uid, 'meals');
+      const data = { 
+        name: mealName,
+        timestamp: serverTimestamp()
+       };
+      addDoc(dbRef, data)
+    };
+  };
+
+  const colRef = collection(db, "user", user.uid, 'meals');
+
+  useEffect(() => {
+    onSnapshot(colRef, (snapshot) => {
+      setMeals(snapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+        name: doc.data().name
+      }), orderBy("timestamp")))
+    })// eslint-disable-next-line
+  }, []);
 
   return (
     <div className='diet'>
-
-      <div className='dietHeading' id='createplan'>
-        {!showPlan ? <h2>Want to create your own diet plan?</h2> : <h2 className='custPlan'>Customise Your Diet Plan</h2>}
-        {!showPlan && <a href='#createplan'><div className='createPlan' onClick={showDietMaker}><h2>Click Here</h2></div></a>}
+      {
+        !meals ? <p className='btn_create_plan' onClick={addMeal}>Want to create your own diet plan? Click Here</p>
+          : <p className="add_meal_option" onClick={addMeal}>Click Here to Add New Meal to Your List</p>
+      }
+      <div className='custom_diet_items'>
+        {meals?.map(meal => (
+          <CustomDiet key={meal.id} id={meal.id} title={meal.name} />
+        )
+        )}
       </div>
-      {showPlan && <CustomDiet foodData={foodData} />}
 
       <h2>Common diet plans</h2>
       <div className='commonDiet'>

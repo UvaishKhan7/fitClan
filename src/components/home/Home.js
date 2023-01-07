@@ -136,11 +136,11 @@ export default function Home() {
             </div>
             <div className="details calories">
               <ul><h6>How many calories you need everyday ?</h6>
-                <li>Sedentary. If you get minimal or no exercise, multiply your BMR by 1.2</li>
-                <li>Lightly active. If you exercise lightly one to three days a week, multiply your BMR by 1.375</li>
-                <li>Moderately active. If you exercise moderately three to five days a week, multiply your BMR by 1.55</li>
-                <li>Very active. If you engage in hard exercise six to seven days a week, multiply your BMR by 1.725</li>
-                <li>Extra active. If you engage in very hard exercise six to seven days a week or have a physical job, multiply your BMR by 1.9</li>
+                <li>Sedentary. If you get minimal or no exercise, multiply your BMR by 1.2.</li>
+                <li>Lightly active. If you exercise lightly one to three days a week, multiply your BMR by 1.375.</li>
+                <li>Moderately active. If you exercise moderately three to five days a week, multiply your BMR by 1.55.</li>
+                <li>Very active. If you engage in hard exercise six to seven days a week, multiply your BMR by 1.725.</li>
+                <li>Extra active. If you engage in very hard exercise six to seven days a week or have a physical job, multiply your BMR by 1.9.</li>
               </ul>
             </div>
           </div>

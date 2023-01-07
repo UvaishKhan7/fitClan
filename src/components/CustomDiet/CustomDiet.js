@@ -1,247 +1,114 @@
-import React, { useEffect, useState } from "react";
-import "./CustomDiet.css";
+import React, { useEffect, useState } from 'react';
+import './CustomDiet.css';
+import db from '../../firebase';
+import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp } from 'firebase/firestore';
+import { UserAuth } from '../../UserAuthContext';
+import foodData from '../../foodData.json'
 import { BsSearch } from "react-icons/bs";
-import { AiOutlineClose } from "react-icons/ai";
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { UserAuth } from "../../UserAuthContext";
-import { addDoc, collection, onSnapshot, query } from "firebase/firestore";
-import db from "../../firebase";
+import { HiOutlineTrash } from 'react-icons/hi'
+//import FoodItem from './foodItems/FoodItem';
 
-const CustomDiet = ({ foodData }) => {
+export default function CustomDiet({ id, title }) {
 
-  const { user, userDetails } = UserAuth();
-
-  //Formula for calculating calorie/day
-  const caloriePerDay = userDetails.gender === 'male' ?
-    ((66.5 + (13.75 * userDetails.weight) + (5.003 * userDetails.height) - (6.75 * userDetails.age)) * userDetails.activityLevel).toFixed(2)
-    :
-    ((66.5 + (13.75 * userDetails.weight) + (5.003 * userDetails.height) - (6.75 * userDetails.age)) * userDetails.activityLevel).toFixed(2);
-
-  //fromula for calculating daily protein intake
-  const dailyProtein = (userDetails.gender === 'male' ? (userDetails.weight * 0.8) : (userDetails.weight * 0.65)).toFixed(2);
-
-  //fromula for calculating daily Carbohydrate
-  const dailyCarbs = (caloriePerDay * (55 / 100)).toFixed(2);
-
-  //fromula for calculating daily Fat intake
-  const dailyFat = (caloriePerDay * (30 / 100)).toFixed(2);
-
+  const [foodItems, setFoodItems] = useState([]);
   const [searchedData, setsearchedData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
-  // eslint-disable-next-line
-  const [mealdata, setmealdata] = useState([])
-  const [selectedMeal, setSelectedMeal] = useState(1);
-  const [totalCal, setTotalCal] = useState(0);
-  const [totalProtein, setTotalProtein] = useState(0);
-  const [totalCarbohydrate, setTotalCarbohydrate] = useState(0);
-  const [totalFat, setTotalFat] = useState(0);
-  const [fetchMeal, setFetchMeals] = useState();
-  //const [mealId, setMealId] = useState();
-
-  useEffect(() => {
-    if (user.uid) {
-      const q = query(collection(db, "user", user.uid, `Meal ${selectedMeal}`));
-      onSnapshot(q, (snapshot) => {
-        setFetchMeals(snapshot.docs.map((doc) =>
-          doc.data()))
-        console.log('fetchMeal', fetchMeal[0].name)
-      });
-    }// eslint-disable-next-line
-  }, [user.id]);
-
-
-  useEffect(() => {
-    const data = [];
-
-    for (let i = 1; i <= userDetails.meals; i++) {
-      data.push(
-        { mealNo: i, items: [] }
-      )
-    }
-    setmealdata(data)
-  }, [userDetails])
-
-  //mui table
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
-    },
-  }));
-
-  const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
-    // hide last border
-    '&:last-child td, &:last-child th': {
-      border: 0,
-    },
-  }));
-
-  function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  }
-
-  const rows = [
-    createData('Calories', totalCal.toFixed(1), caloriePerDay),
-    createData('Proteins', totalProtein.toFixed(1), dailyProtein),
-    createData('Carbohydates', totalCarbohydrate.toFixed(1), dailyCarbs),
-    createData('Fat', totalFat.toFixed(1), dailyFat),
-  ];
-  //end of mui table 
+  const [foodId, setFoodId] = useState();
+  const { user } = UserAuth();
 
   const handleSearch = (e) => {
     const searchedWord = e.target.value.toLowerCase();
     setWordEntered(searchedWord);
     const filteredData = foodData.filter((value) => {
-      return value.name.includes(searchedWord);
+      return value.title.includes(searchedWord);
     });
     searchedWord === "" ? setsearchedData([]) : setsearchedData(filteredData);
   };
 
-  const handleClear = () => {
-    setsearchedData([]);
-    setWordEntered("");
-  };
 
   const additem = async (item) => {
 
     if (item) {
-      const mealColRef = collection(db, "user", user.uid, `Meal ${selectedMeal}`);
-      await addDoc(mealColRef, {
-        name: item.name,
-        carbs: item.carbohydrate,
+      const mealColRef = collection(db, "user", user.uid, 'meals', id, `${title}`);
+      const docSnap = await addDoc(mealColRef, {
+        title: item.title,
+        carbs: item.carbs,
         protein: item.proteins,
         fat: item.fat,
-        calory: item.calories
+        calory: item.calories,
+        timestamp: serverTimestamp()
       })
-      console.log('mealColRef', mealColRef)
+      setFoodId(docSnap.id);
+      setsearchedData([]);
+      setWordEntered("");
     }
+  };
 
-    for (let i = 0; i < mealdata.length; i++) {
-      if (selectedMeal - 1 === i) {
-        mealdata[i].items.push({ item });
-      }
+  const deleteFoodItem = async (foodItems) => {
+    if (foodItems) {
+      await deleteDoc(doc(db, "user", user.uid, 'meals', id, `${title}`, foodId))
     }
-    setTotalCal(totalCal + item.calories)
-    setTotalProtein(totalProtein + item.proteins)
-    setTotalCarbohydrate(totalCarbohydrate + item.carbohydrate)
-    setTotalFat(totalFat + item.fat)
-    handleClear();
+    console.log('deleted')
   }
 
+  const colRef = collection(db, "user", user.uid, 'meals', id, `${title}`);
+
+  useEffect(() => {
+    const q = query(colRef, orderBy("timestamp"));
+    onSnapshot(q, (snapshot) => {
+      setFoodItems(snapshot.docs.map((doc) =>
+        doc.data()))
+    });
+    // eslint-disable-next-line 
+  }, []);
+
   return (
-    <>
-      {/* Table for showing required macros & your plan macros */}
-      <div className="totalMacro">
-        <TableContainer component={Paper}>
-          <Table aria-label="customized table">
-            <TableHead>
-              <TableRow>
-                <StyledTableCell>Macro</StyledTableCell>
-                <StyledTableCell align="right">Your Plan</StyledTableCell>
-                <StyledTableCell align="right">Recommended</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <StyledTableRow key={row.name}>
-                  <StyledTableCell component="th" scope="row">
-                    <strong>{row.name}</strong>
-                  </StyledTableCell>
-                  <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                  <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
+    <div className='custom_diet'>
+      <h6>{title}</h6>
 
-      {/* Dropdown for selecting meal & search bar for searching food items */}
-      <div className="searchNadd">
+      {/* food item search bar */}
+      <div className="searchbar">
+        <div className="searchinput">
+          <input className="mealinput"
+            placeholder="Search & add food items to your meal"
+            value={wordEntered}
+            onChange={handleSearch}
+          >
+          </input>
+          <BsSearch className="searchicon" />
+        </div>
 
-        {/* Meal selection dropdown */}
-        <div className="mealSelector">
-          <select onChange={(e) => setSelectedMeal(e.target.value)}>
-            {mealdata.map((options, name) => {
-              return (<option key={name} value={options.mealNo} className='meal_dropdown'>Meal {options.mealNo}</option>)
+        {searchedData !== 0 && (
+          <div className="searchresults">
+            {searchedData.slice(0, 10).map((item, title) => {
+              return (
+                <div key={title} className="resultsList" onClick={e => additem(item)}>
+                  <span className='seaarch_food_title'>{item.title}</span>
+                  <br />
+                  <span className='search_food_macros' style={{ fontSize: '12px', color: 'grey' }}>({item.calories} kcal, Carbs:{item.carbohydrate}g, Protein:{item.proteins}g, Fat:{item.fat}g )</span>
+                </div>
+              );
             })}
-          </select>
-        </div>
-
-        {/* food item search bar */}
-        <div className="searchbar">
-          <div className="searchinput">
-            <input className="mealinput"
-              placeholder="Search"
-              value={wordEntered}
-              onChange={handleSearch}
-            ></input>
-            {wordEntered !== 0 ? (
-              <AiOutlineClose className="searchicon" onClick={handleClear} />
-            ) : (
-              <BsSearch className="searchicon" />
-            )}
           </div>
-
-          {searchedData !== 0 && (
-            <div className="searchresults">
-              {searchedData.slice(0, 10).map((item, name) => {
-                return (
-                  <div key={name} className="resultsList" onClick={e => additem(item)}>
-                    <strong>{item.name.toUpperCase()}</strong>
-                    <br />
-                    <span style={{ fontSize: '12px', color: 'grey' }}>({item.calories} kcal, Carbs:{item.carbohydrate}g, Protein:{item.proteins}g, Fat:{item.fat}g )</span>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-
-        </div>
+        )}
 
       </div>
 
-      <div className="customDiet">
-        {mealdata.map((mealGroup) => {
-          return (
-            <div className="dietgGroup">
-              <div className="mealButton">Meal {mealGroup.mealNo}</div>
-              {mealGroup.items.map((food, foodId) => {
-                return (
-                  <div className="dietitem" draggable>
-                    {
-                      fetchMeal?.map(() => (
-                        <>
-                          <div>{fetchMeal.name}</div>
-                          <div>{fetchMeal.calory}</div>
-                          <div>{fetchMeal.protein}</div>
-                        </>
-                      ))
-                    }
-                    <div>{food.item.name.toUpperCase()}</div>
-                    <div>({food.item.calories} kcal)</div>
-                  </div>
-                );
-              })}
+      {
+        !foodItems
+          ?
+          <div className='text-light'>Please add food to your meal.</div>
+          :
+          foodItems?.map(({ title, carbs, proteins, fat, calories }) => (
+            <div key={title} className="food_list_item">
+              <div className='food_title'>{title}  <button onClick={deleteFoodItem} ><HiOutlineTrash className='trash' /></button></div>
+              <div className="macros">
+                Carbs: {carbs}g, Prot: {proteins}g, Fat: {fat}g, Cal: {calories}kCal
+              </div>
             </div>
-          )
-        })}
-      </div>
-    </>
-  );
-};
+          ))
+      }
 
-export default CustomDiet;
+    </div >
+  )
+}

@@ -18,3 +18,4 @@ export const auth = getAuth(app);
 export default db; 
 
 export { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged}
+

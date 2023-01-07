@@ -8,9 +8,7 @@
 }
 
 .diet > h2,
-.dietHeading > h2,
-.common_diet_plan,
-.createPlan {
+.common_diet_plan {
   text-transform: capitalize;
   margin: 1rem;
   box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
@@ -19,25 +17,26 @@
   padding: 0.5rem;
 }
 
-.createPlan{
-  background-color: #281157;
-}
-
-.createPlan > h2 {
-  width: fit-content;
-  color: white;
-  padding: 0rem 1rem;
-}
-
 .diet > h2 {
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 1rem 4rem;
 }
 
-.custPlan {
-  background-color: rgba(0, 0, 0, 0.6);
+.btn_create_plan,
+.add_meal_option {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  font-size: 1.5rem;
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
   border-radius: 0.5rem;
-  padding: 1rem 2rem;
-  backdrop-filter: blue(5px);
+  cursor: default;
+}
+
+.custom_diet_items{
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1rem;
 }
 
 .commonDiet {
@@ -63,9 +62,11 @@
   width: 100%;
   text-align: center;
   background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(5px);
   height: fit-content;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1.25rem;
 }
 
 .common_diet_plan_1 {
@@ -91,44 +92,31 @@
   transform: scale(1.05);
 }
 
-.createPlan:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: black;
-}
-
-.createPlan:visited{
-  text-decoration: none;
-}
-
-.dietHeading > h2 {
-  text-transform: capitalize;
-}
-
-.dietHeading > a {
-  text-decoration: none;
-}
-
-.dietHeading {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-  font-weight: 800;
+/* ========== Media query for medium devices (tablets) ========== */
+@media screen and (max-width: 1024px) {
+  .custom_diet_items{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
 }
 
 /* ========== Media query for small devices (Mobiles) ========== */
 @media screen and (max-width: 600px) {
   .diet {
-    padding: 0 !important;
+    padding-top: 1rem !important;
   }
   .diet > h2 {
-    margin: 0;
+    margin-top: 1rem;
+    margin-bottom: 0;
     font-weight: 700;
   }
   .common_diet_plan > h3 {
     font-size: 0.8rem;
+  }
+  .btn_create_plan,
+  .add_meal_option{
+    font-size: 1rem;
   }
   .commonDiet {
     padding: 0;
@@ -142,4 +130,9 @@
   .common_diet_plan {
     width: 150px;
   }
+  .custom_diet_items{
+    display: flex;
+    flex-direction: column;
+  }
 }
+  

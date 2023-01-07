@@ -101,7 +101,7 @@
   background-size: cover;
   display: flex;
   width: 90%;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   border-radius: 0.5rem;
   padding: 1rem 2rem;
@@ -181,6 +181,10 @@ ul > h6 {
 .bfp_details_age > ul > li {
   text-align: left;
   line-height: 2rem;
+}
+
+.details{
+  padding-top: 1.5rem;
 }
 
 .bfp_details,
