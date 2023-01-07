@@ -19,24 +19,70 @@
 
 .diet > h2 {
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 1rem 4rem;
+  padding: 0.8rem 1.8rem;
+  font-size: 1.7rem;
 }
 
 .btn_create_plan,
 .add_meal_option {
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
-  font-size: 1.5rem;
-  padding: 0.5rem 1.5rem;
+  width: 100%;
+  background-color: rgba(167, 167, 167, 0.289);
+  backdrop-filter: blur(3px);
+  font-size: 1.25rem;
+  padding: 0.7rem 1.5rem;
   font-weight: 600;
   border-radius: 0.5rem;
-  cursor: default;
 }
 
-.custom_diet_items{
+.meal_name_input {
+  width: 400px;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  padding: 2rem;
+  border-radius: 0.5rem;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
+}
+
+.meal_name_input > input,
+.meal_name_input > button {
+  width: 80%;
+  height: 2.5rem;
+}
+
+.meal_name_input > input{
+  background: transparent;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #000000;
+  background-color: rgba(193, 193, 193, 0.8);
+  box-shadow: 10px 10px 10px -6px black;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  backdrop-filter: blur(2px);
+}
+
+.meal_name_input > input::placeholder{
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.meal_name_input > button{
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.custom_diet_items {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 1rem;
+  padding-bottom: 0;
 }
 
 .commonDiet {
@@ -45,6 +91,7 @@
   border-radius: 0.5rem;
   display: flex;
   flex-wrap: wrap;
+  padding: 0 2rem;
   justify-content: space-evenly;
 }
 
@@ -54,7 +101,7 @@
   background-size: cover;
   background-position: center;
   aspect-ratio: 16/9;
-  width: 400px;
+  width: 300px;
   padding: 0;
 }
 
@@ -94,7 +141,7 @@
 
 /* ========== Media query for medium devices (tablets) ========== */
 @media screen and (max-width: 1024px) {
-  .custom_diet_items{
+  .custom_diet_items {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -115,7 +162,7 @@
     font-size: 0.8rem;
   }
   .btn_create_plan,
-  .add_meal_option{
+  .add_meal_option {
     font-size: 1rem;
   }
   .commonDiet {
@@ -130,9 +177,8 @@
   .common_diet_plan {
     width: 150px;
   }
-  .custom_diet_items{
+  .custom_diet_items {
     display: flex;
     flex-direction: column;
   }
 }
-  

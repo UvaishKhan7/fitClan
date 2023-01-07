@@ -2,37 +2,44 @@ import React, { useEffect, useState } from 'react';
 import './Diet.css'
 import CustomDiet from '../CustomDiet/CustomDiet';
 import db from '../../firebase';
-import { addDoc, collection, onSnapshot, orderBy, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from 'firebase/firestore';
 import { UserAuth } from '../../UserAuthContext';
+import { Add } from '@mui/icons-material';
+import { Button } from '@mui/material';
 
 export default function Diet() {
 
   const [meals, setMeals] = useState([]);
+  const [mealName, setMealName] = useState('')
+  const [mealTime, setMealTime] = useState();
 
   const { user } = UserAuth();
 
-  const addMeal = async () => {
-    const mealName = prompt("Please enter new meal name");
+  const addMeal = async (e) => {
+    e.preventDefault();
 
-    if (mealName) {
+    if (user.uid) {
       const dbRef = collection(db, 'user', user.uid, 'meals');
-      const data = { 
+      await addDoc(dbRef, {
         name: mealName,
+        time: mealTime,
         timestamp: serverTimestamp()
-       };
-      addDoc(dbRef, data)
-    };
+      })
+    }
+    setMealName('');
+    setMealTime();
   };
 
   const colRef = collection(db, "user", user.uid, 'meals');
 
   useEffect(() => {
-    onSnapshot(colRef, (snapshot) => {
+     const q = query(colRef, orderBy("time"));
+    onSnapshot(q, (snapshot) => {
       setMeals(snapshot.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
         name: doc.data().name
-      }), orderBy("timestamp")))
+      })))
     })// eslint-disable-next-line
   }, []);
 
@@ -40,7 +47,13 @@ export default function Diet() {
     <div className='diet'>
       {
         !meals ? <p className='btn_create_plan' onClick={addMeal}>Want to create your own diet plan? Click Here</p>
-          : <p className="add_meal_option" onClick={addMeal}>Click Here to Add New Meal to Your List</p>
+          :
+          <div className="meal_name_input">
+            <h6 className="add_meal_option">Add New Meal to Your List</h6>
+            <input type="text" onChange={(e) => setMealName(e.target.value)} name="mealName" id="name" placeholder='Enter meal name e.g. Breakfast' />
+            <input type="time" name="mealTime" id="time" onChange={(e) => setMealTime(e.target.value)} />
+            <Button type="submit" variant="contained" onClick={addMeal}> <Add /> Add Meal</Button>
+          </div>
       }
       <div className='custom_diet_items'>
         {meals?.map(meal => (

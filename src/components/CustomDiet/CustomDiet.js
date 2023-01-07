@@ -6,7 +6,7 @@ import { UserAuth } from '../../UserAuthContext';
 import foodData from '../../foodData.json'
 import { BsSearch } from "react-icons/bs";
 import { HiOutlineTrash } from 'react-icons/hi'
-//import FoodItem from './foodItems/FoodItem';
+import { Button } from '@mui/material';
 
 export default function CustomDiet({ id, title }) {
 
@@ -44,27 +44,32 @@ export default function CustomDiet({ id, title }) {
     }
   };
 
-  const deleteFoodItem = async (foodItems) => {
-    if (foodItems) {
-      await deleteDoc(doc(db, "user", user.uid, 'meals', id, `${title}`, foodId))
-    }
-    console.log('deleted')
+  // for deleting the meal
+  const deleteMeal = async (id) => {
+    await deleteDoc(doc(db, "user", user.uid, 'meals', id))
+  }
+
+  // for deleting food item
+  const deleteFoodItem = async (foodId) => {
+    await deleteDoc(doc(db, "user", user.uid, 'meals', id, `${title}`, foodId))
   }
 
   const colRef = collection(db, "user", user.uid, 'meals', id, `${title}`);
 
   useEffect(() => {
-    const q = query(colRef, orderBy("timestamp"));
+    const q = query(colRef);
     onSnapshot(q, (snapshot) => {
       setFoodItems(snapshot.docs.map((doc) =>
-        doc.data()))
+        doc.data(), orderBy("timestamp")))
     });
     // eslint-disable-next-line 
   }, []);
 
   return (
     <div className='custom_diet'>
-      <h6>{title}</h6>
+      <div className="title_n_trash">
+        <h6>{title}</h6>  <Button type="submit" onClick={() => deleteMeal(id)} variant="outlined" color="error">Delete Meal &nbsp;<HiOutlineTrash className='trash' /></Button>
+      </div>
 
       {/* food item search bar */}
       <div className="searchbar">
@@ -95,18 +100,14 @@ export default function CustomDiet({ id, title }) {
       </div>
 
       {
-        !foodItems
-          ?
-          <div className='text-light'>Please add food to your meal.</div>
-          :
-          foodItems?.map(({ title, carbs, proteins, fat, calories }) => (
-            <div key={title} className="food_list_item">
-              <div className='food_title'>{title}  <button onClick={deleteFoodItem} ><HiOutlineTrash className='trash' /></button></div>
-              <div className="macros">
-                Carbs: {carbs}g, Prot: {proteins}g, Fat: {fat}g, Cal: {calories}kCal
-              </div>
+        foodItems?.map(({ title, carbs, proteins, fat, calories }) => (
+          <div key={title} className="food_list_item">
+            <div className='food_title'>{title} <button onClick={() => deleteFoodItem(foodId)} ><HiOutlineTrash className='trash' /></button></div>
+            <div className="macros">
+              Carbs: {carbs}g, Prot: {proteins}g, Fat: {fat}g, Cal: {calories}kCal
             </div>
-          ))
+          </div>
+        ))
       }
 
     </div >

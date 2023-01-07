@@ -5,6 +5,20 @@
   padding: 1rem;
   width: 340px;
   min-height: 300px;
+  margin-bottom: 1.5rem;
+}
+
+.title_n_trash {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border: 1px solid gray;
+  align-items: center;
+  border-radius: 0.5rem;
+}
+
+.title_n_trash > h6 {
+  margin-bottom: 0;
 }
 
 .searchbar {
@@ -24,20 +38,24 @@
   align-items: center;
 }
 
+.resultsList {
+  cursor: pointer;
+}
+
 .mealinput {
   background: transparent;
   border: none;
   width: 100%;
   outline: none;
   color: white;
-  border-bottom: 1px solid gray ;
+  border-bottom: 1px solid gray;
 }
 
-.mealinput::placeholder{
+.mealinput::placeholder {
   font-size: 0.8rem;
 }
 
-.seaarch_food_title{
+.seaarch_food_title {
   text-transform: capitalize;
   font-weight: 600;
 }
@@ -57,12 +75,12 @@
   align-items: center;
 }
 
-.food_title>button{
+.food_title > button {
   background: transparent;
   border: none;
 }
 
-.trash{
+.trash {
   color: rgb(252, 40, 40);
 }
 
