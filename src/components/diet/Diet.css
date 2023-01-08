@@ -1,6 +1,5 @@
 .diet {
   margin: 0 auto;
-  box-shadow: 15px 15px 10px -5px rgba(0, 0, 0, 0.5);
   color: white;
   display: grid;
   place-items: center;
@@ -146,6 +145,33 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
   }
+  .diet {
+    padding-top: 1rem !important;
+  }
+  .diet > h2 {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    font-weight: 700;
+  }
+  .common_diet_plan > h3 {
+    font-size: 0.8rem;
+  }
+  .btn_create_plan,
+  .add_meal_option {
+    font-size: 1rem;
+  }
+  .commonDiet {
+    padding: 0;
+    width: 100%;
+    margin: 1rem;
+  }
+  .createPlan {
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  .common_diet_plan {
+    width: 280px;
+  }
 }
 
 /* ========== Media query for small devices (Mobiles) ========== */
@@ -175,7 +201,7 @@
     font-weight: 700;
   }
   .common_diet_plan {
-    width: 150px;
+    width: 160px;
   }
   .custom_diet_items {
     display: grid;

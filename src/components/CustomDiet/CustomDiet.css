@@ -49,6 +49,7 @@
   left: 10px;
   border-radius: 0.5rem;
   box-shadow: 2px 2px 5px rgb(33, 33, 33);
+  z-index: 5;
 }
 
 .resultsList {
