@@ -8,12 +8,11 @@ import { BsSearch } from "react-icons/bs";
 import { HiOutlineTrash } from 'react-icons/hi'
 import { Button } from '@mui/material';
 
-export default function CustomDiet({ id, title }) {
+export default function CustomDiet({ id, title, time }) {
 
   const [foodItems, setFoodItems] = useState([]);
   const [searchedData, setsearchedData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
-  const [foodId, setFoodId] = useState();
   const { user } = UserAuth();
 
   // handleSearch function to handle the searched food item
@@ -31,7 +30,7 @@ export default function CustomDiet({ id, title }) {
 
     if (item) {
       const mealColRef = collection(db, "user", user.uid, 'meals', id, `${title}`);
-      const docSnap = await addDoc(mealColRef, {
+      await addDoc(mealColRef, {
         title: item.title,
         carbs: item.carbs,
         protein: item.proteins,
@@ -39,7 +38,6 @@ export default function CustomDiet({ id, title }) {
         calory: item.calories,
         timestamp: serverTimestamp()
       })
-      setFoodId(docSnap.id);
       setsearchedData([]);
       setWordEntered("");
     }
@@ -51,7 +49,7 @@ export default function CustomDiet({ id, title }) {
   }
 
   // for deleting food item
-  const deleteFoodItem = async (id) => {
+  const deleteFoodItem = async (foodId) => {
     await deleteDoc(doc(db, "user", user.uid, 'meals', id, `${title}`, foodId))
   }
 
@@ -61,7 +59,16 @@ export default function CustomDiet({ id, title }) {
     const q = query(colRef, orderBy("timestamp"));
     onSnapshot(q, (snapshot) => {
       setFoodItems(snapshot.docs.map((doc) =>
-        doc.data()))
+      ({
+        ...doc.data(),
+        id: doc.id,
+        name: doc.data().title,
+        carbs: doc.data().carbs,
+        protein: doc.data().protein,
+        fat: doc.data().fat,
+        calory: doc.data().calory
+      })
+      ))
     });
     // eslint-disable-next-line 
   }, []);
@@ -69,7 +76,7 @@ export default function CustomDiet({ id, title }) {
   return (
     <div className='custom_diet'>
       <div className="title_n_trash">
-        <h6>{title}</h6>  <Button type="submit" onClick={() => deleteMeal(id)} variant="outlined" color="error">Delete Meal &nbsp;<HiOutlineTrash className='trash' /></Button>
+        <h6>{title}</h6> <span>{time}</span> <Button type="submit" onClick={() => deleteMeal(id)} variant="outlined" color="error">Delete Meal &nbsp;<HiOutlineTrash className='trash' /></Button>
       </div>
 
       {/* food item search bar */}
@@ -101,18 +108,18 @@ export default function CustomDiet({ id, title }) {
       </div>
 
       {
-        foodItems?.map(({ title, carbs, protein, fat, calory }, id={foodId}) => (
-          <div key={title} className="food_list_item">
-            <div className='food_title'>{title}
-              <Button type="submit" onClick={() => deleteFoodItem(id)} variant="outlined" color="error">
+        foodItems?.map(food => (
+          <div key={food.id} className="food_list_item">
+            <div className='food_title'>{food.name}
+              <Button type="submit" onClick={() => deleteFoodItem(food.id)} variant="outlined" color="error">
                 <HiOutlineTrash className='trash' />
               </Button>
             </div>
             <div className="macros">
-              <span>Carbs: {carbs}g, </span>
-              <span>Prot: {protein}g, </span>
-              <span>Fat: {fat}g, </span>
-              <span>Cal: {calory}kCal</span>
+              <span>Carbs: {food.carbs}g, </span>
+              <span>Prot: {food.protein}g, </span>
+              <span>Fat: {food.fat}g, </span>
+              <span>Cal: {food.calory}kCal</span>
             </div>
           </div>
         ))

@@ -57,7 +57,7 @@ export default function Diet() {
       }
       <div className='custom_diet_items'>
         {meals?.map(meal => (
-          <CustomDiet key={meal.id} id={meal.id} title={meal.name} />
+          <CustomDiet key={meal.id} id={meal.id} title={meal.name} time={meal.time} />
         )
         )}
       </div>

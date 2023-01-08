@@ -38,8 +38,24 @@
   align-items: center;
 }
 
+.searchresults {
+  position: absolute;
+  background-color: black;
+  top: 106px;
+  max-height: 290px;
+  overflow: hidden;
+  overflow-y: auto;
+  opacity: 0.94;
+  left: 10px;
+  border-radius: 0.5rem;
+  box-shadow: 2px 2px 5px rgb(33, 33, 33);
+}
+
 .resultsList {
   cursor: pointer;
+  padding: 15px;
+  width: 300px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .mealinput {
@@ -90,4 +106,27 @@
   color: gray;
   display: flex;
   justify-content: space-between;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 0.5rem;
+
+  background: #000000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(61, 61, 61);
+  border-radius: 0.5rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
