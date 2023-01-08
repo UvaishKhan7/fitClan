@@ -34,7 +34,7 @@
 }
 
 .meal_name_input {
-  width: 360px;
+  width: 350px;
   margin-top: 1rem;
   margin-bottom: 1.5rem;
   background-color: rgba(0, 0, 0, 0.5);
@@ -48,7 +48,8 @@
   gap: 1rem;
 }
 
-.meal_name_input > input,
+.meal_name_input > input[type='text'],
+.meal_name_input > input[type='time'],
 .meal_name_input > button {
   width: 80%;
   height: 2.5rem;
