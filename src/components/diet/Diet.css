@@ -48,14 +48,14 @@
   gap: 1rem;
 }
 
-.meal_name_input > input[type='text'],
-.meal_name_input > input[type='time'],
+.meal_name_input > input[type="text"],
+.meal_name_input > input[type="time"],
 .meal_name_input > button {
   width: 80%;
   height: 2.5rem;
 }
 
-.meal_name_input > input{
+.meal_name_input > input {
   background: transparent;
   outline: none;
   border: none;
@@ -67,11 +67,11 @@
   backdrop-filter: blur(2px);
 }
 
-.meal_name_input > input::placeholder{
+.meal_name_input > input::placeholder {
   color: rgba(0, 0, 0, 0.8);
 }
 
-.meal_name_input > button{
+.meal_name_input > button {
   letter-spacing: 2px;
   font-weight: 500;
 }
@@ -191,6 +191,11 @@
   .btn_create_plan,
   .add_meal_option {
     font-size: 1rem;
+  }
+  .meal_name_input > input[type="text"],
+  .meal_name_input > input[type="time"],
+  .meal_name_input > button {
+    width: 100%;
   }
   .commonDiet {
     padding: 0;
