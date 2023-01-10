@@ -3,12 +3,12 @@ import { getFirestore } from "firebase/firestore"
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAKYumznAvCNlzoBuPlh0KOuVthbFUkFWA",
-  authDomain: "fit-clan-ac424.firebaseapp.com",
-  projectId: "fit-clan-ac424",
-  storageBucket: "fit-clan-ac424.appspot.com",
-  messagingSenderId: "732634308887",
-  appId: "1:732634308887:web:1b9eafb96d8523233f9752"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGE_SENGING_ID,
+  appId: process.env.REACT_APP_APP_ID
 };
 
 export const app = initializeApp(firebaseConfig);

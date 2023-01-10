@@ -31,3 +31,14 @@
   flex-wrap: wrap;
   gap: 1rem;
 }
+
+ /* ========== For Medium Devices ========== */
+ @media screen and (max-width: 1024px) {
+  .exercise {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }  
+}

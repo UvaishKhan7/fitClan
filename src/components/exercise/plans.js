@@ -1,11 +1,16 @@
 import React from 'react';
 import './plans.css';
 
-export default function plans() {
+export default function Plans({title, details}) {
   return (
     <div className='exercise__plans'>
-        <h3>Plan Title</h3>
-        <p>Plan Details</p>
+        <h3>{title}</h3>
+        <p>{details}</p>
     </div>
   )
+}
+
+Plans.defaultProps = {
+  title: 'Plan Title',
+  details: 'Plan Details'
 }

@@ -296,3 +296,30 @@ ul > h6 {
     margin-bottom: 2rem;
   }
 }
+
+/* ========= Media Queries For Medium Devices (tablets) ========= */
+@media screen and (max-width: 1024px) {
+  .homeContainer {
+    overflow-y: auto;
+  }
+  .description {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 90%;
+  }
+  .details {
+    width: 100%;
+  }
+  .bfp_description,
+  .bfp_description_age {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bfp_details,
+  .bfp_details_age {
+    width: 46%;
+  }
+}

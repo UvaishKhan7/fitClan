@@ -14,3 +14,13 @@
     font-size: 1rem;
     font-weight: 400;
 }
+
+
+ /* ========== For Medium Devices ========== */
+ @media screen and (max-width: 1024px) {
+  .exercise__plans {
+    width: 300px;
+    height: 200px;
+    text-align: center;
+  }  
+}

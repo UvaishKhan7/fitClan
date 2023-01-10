@@ -3,7 +3,6 @@ import './CustomDiet.css';
 import db from '../../firebase';
 import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp } from 'firebase/firestore';
 import { UserAuth } from '../../UserAuthContext';
-import foodData from '../../foodData.json'
 import { BsSearch } from "react-icons/bs";
 import { HiOutlineTrash } from 'react-icons/hi'
 import { Button } from '@mui/material';
@@ -11,6 +10,7 @@ import { Button } from '@mui/material';
 export default function CustomDiet({ id, title, time }) {
 
   const [foodItems, setFoodItems] = useState([]);
+  const [foodData, setFoodData] = useState([]);
   const [searchedData, setsearchedData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
   const { user } = UserAuth();
@@ -70,13 +70,36 @@ export default function CustomDiet({ id, title, time }) {
       })
       ))
     });
+
+
+    const foodRef = collection(db, "foodItems");
+    const qu = query(foodRef);
+    onSnapshot(qu, (snapshot) => {
+      setFoodData(snapshot.docs.map((doc) =>
+      ({
+        ...doc.data(),
+        id: doc.id,
+        name: doc.data().title,
+        carbs: doc.data().carbs,
+        protein: doc.data().protein,
+        fat: doc.data().fat,
+        calory: doc.data().calory,
+        serving: doc.data().serving,
+        unit: doc.data().unit
+      })
+      ))
+    });
     // eslint-disable-next-line 
   }, []);
 
   return (
     <div className='custom_diet'>
       <div className="title_n_trash">
-        <h6>{title}</h6> <span>{time}</span> <Button type="submit" onClick={() => deleteMeal(id)} variant="outlined" color="error">Delete Meal &nbsp;<HiOutlineTrash className='trash' /></Button>
+        <div className='title_n_time'>
+          <h6>{title}</h6>
+          <small>at {time}</small>
+        </div>
+        <Button type="submit" onClick={() => deleteMeal(id)} variant="outlined" color="error">Delete Meal &nbsp;<HiOutlineTrash className='trash' /></Button>
       </div>
 
       {/* food item search bar */}
@@ -96,9 +119,12 @@ export default function CustomDiet({ id, title, time }) {
             {searchedData.slice(0, 10).map((item, title) => {
               return (
                 <div key={title} className="resultsList" onClick={e => additem(item)}>
-                  <span className='seaarch_food_title'>{item.title}</span>
+                  <span className='seaarch_food_title'>{item.title}
+                    <span style={{ fontSize: '12px', color: 'grey' }}>
+                      &nbsp; ({item.serving} {item.unit})
+                    </span></span>
                   <br />
-                  <span className='search_food_macros' style={{ fontSize: '12px', color: 'grey' }}>({item.calories} kcal, Carbs:{item.carbohydrate}g, Protein:{item.proteins}g, Fat:{item.fat}g )</span>
+                  <span className='search_food_macros' style={{ fontSize: '12px', color: 'grey' }}>({item.calories} kcal, Carbs:{item.carbs}g, Protein:{item.proteins}g, Fat:{item.fat}g )</span>
                 </div>
               );
             })}
@@ -110,7 +136,7 @@ export default function CustomDiet({ id, title, time }) {
       {
         foodItems?.map(food => (
           <div key={food.id} className="food_list_item">
-            <div className='food_title'>{food.name}
+            <div className='food_title'>{food.name}{food.serving}
               <Button type="submit" onClick={() => deleteFoodItem(food.id)} variant="outlined" color="error">
                 <HiOutlineTrash className='trash' />
               </Button>
@@ -124,6 +150,13 @@ export default function CustomDiet({ id, title, time }) {
           </div>
         ))
       }
+
+      {/* <div className="total_macros">
+        Total Cal = kCal,
+        Total Prot = g,
+        Total Carb = g,
+        Total Fat = g
+      </div> */}
 
     </div >
   )

@@ -74,7 +74,7 @@ export default function App() {
 
         </Routes>
 
-        <Footer />
+        <Footer className='footer'/>
 
       </UserAuthContext>
     </div>

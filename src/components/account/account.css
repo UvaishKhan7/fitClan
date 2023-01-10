@@ -1,16 +1,16 @@
 .account {
-  color: white;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(5px);
   margin: 1.25rem auto;
-  padding: 2rem;
-  border-radius: 1rem;
-  width: max-content;
-  box-shadow: 20px 20px 10px -6px rgba(0, 0, 0, 0.5);
 }
 
 .account_details {
+  padding: 2rem;
+  width: max-content;
+  border-radius: 1rem;
   text-align: left;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  box-shadow: 20px 20px 10px -6px rgba(0, 0, 0, 0.5);
 }
 
 .account_details > p {
@@ -19,7 +19,18 @@
 }
 
 @media screen and (max-width: 600px) {
-  .account {
+  .account_details {
     width: 80%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .account {
+    height: 70vh;
+    display: grid;
+    place-items: center;
+  }
+  .account_details {
+    width: 70%;
   }
 }

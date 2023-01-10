@@ -1,8 +1,10 @@
 .diet {
   margin: 0 auto;
   color: white;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 1rem 0;
 }
 
@@ -28,18 +30,21 @@
   background-color: rgba(167, 167, 167, 0.289);
   backdrop-filter: blur(3px);
   font-size: 1.25rem;
-  padding: 0.7rem 1.5rem;
+  padding: 0.7rem 1rem;
   font-weight: 600;
   border-radius: 0.5rem;
 }
 
+.add_meal_option {
+  margin-bottom: 0;
+}
+
 .meal_name_input {
-  width: 350px;
+  width: 380px;
   margin-top: 1rem;
-  margin-bottom: 1.5rem;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
-  padding: 2rem;
+  padding: 2rem 3rem;
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -48,32 +53,25 @@
   gap: 1rem;
 }
 
-.meal_name_input > input[type="text"],
-.meal_name_input > input[type="time"],
-.meal_name_input > button {
-  width: 80%;
-  height: 2.5rem;
-}
-
-.meal_name_input > input {
-  background: transparent;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid #000000;
-  background-color: rgba(193, 193, 193, 0.8);
-  box-shadow: 10px 10px 10px -6px black;
-  padding: 0.5rem;
+.add_meal_input_name,
+.add_meal_input_time {
+  width: 100%;
+  height: 2.2rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
   border-radius: 0.5rem;
-  backdrop-filter: blur(2px);
-}
-
-.meal_name_input > input::placeholder {
-  color: rgba(0, 0, 0, 0.8);
+  border: none;
+  outline: none;
 }
 
 .meal_name_input > button {
   letter-spacing: 2px;
   font-weight: 500;
+  width: 100%;
+  border-radius: 0.5rem; 
 }
 
 .custom_diet_items {
@@ -83,6 +81,10 @@
   justify-content: space-evenly;
   padding: 1rem;
   padding-bottom: 0;
+}
+
+.table_container {
+  margin: 1.5rem;
 }
 
 .commonDiet {
