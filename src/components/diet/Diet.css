@@ -194,6 +194,9 @@
   .add_meal_option {
     font-size: 1rem;
   }
+  .meal_name_input{
+    width: 330px;
+  }
   .meal_name_input > input[type="text"],
   .meal_name_input > input[type="time"],
   .meal_name_input > button {
