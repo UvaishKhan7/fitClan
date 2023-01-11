@@ -13,6 +13,8 @@ import Diet from "./components/diet/Diet";
 import Exercise from "./components/exercise/Exercise";
 import ProtectedRoute, { AuthenticatedRoute } from "./ProtectedRoute";
 import LandingPage from "./components/LandingPage/LandingPage";
+import Banner from './assets/Banner.gif';
+import LOGO from './assets/logo.png';
 
 export default function App() {
 
@@ -21,7 +23,8 @@ export default function App() {
     <div className="App">
 
       <UserAuthContext>
-
+        <img src={Banner} alt="" className='banner img-fluid' />
+        <img src={LOGO} alt="" className='logo' />
         <Header />
 
         <Routes>

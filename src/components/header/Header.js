@@ -3,11 +3,9 @@ import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, useNavigate } from 'react-router-dom';
-import Banner from '../../assets/Banner.gif';
-import LOGO from '../../assets/logo.png';
 import './header.css';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { UserAuth } from '../../UserAuthContext';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 function Header() {
 
@@ -25,8 +23,6 @@ function Header() {
 
   return (
     <div className='headerWrapper'>
-      <img src={Banner} alt="" className='banner img-fluid' />
-      <img src={LOGO} alt="" className='logo' />
       <div className='headerContainer'>
         <Navbar bg="dark" variant="dark" className='px-2' sticky='top' expand="sm" collapseOnSelect>
           <Link to='/'>
@@ -48,20 +44,20 @@ function Header() {
             </Nav>
           </Navbar.Collapse>
           <Navbar.Collapse className="justify-content-end">
-            <Navbar.Text className='navTitles'>
-              {
-                !(user) ? <Link to='/login'>LOGIN</Link> :
-                  (<NavDropdown id="nav-dropdown-dark-example" title={userDetails?.username} menuVariant="dark">
-                    <NavDropdown.Item as={Link} to='/account'>
-                      Account
-                    </NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item onClick={handleLogout}>
-                      Logout
-                    </NavDropdown.Item>
-                  </NavDropdown>)
-              }
-            </Navbar.Text>
+            {
+              !(user) ? <Link to='/login'>LOGIN</Link> :
+                (<Dropdown>
+                  <Dropdown.Toggle id="dropdown-button-dark-example1" variant="dark">
+                    Logged in as : <strong>{userDetails?.username}</strong>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu variant="dark">
+                    <Dropdown.Item as={Link} to='/account'>Account</Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+                )
+            }
           </Navbar.Collapse>
         </Navbar>
       </div>

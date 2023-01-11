@@ -1,10 +1,15 @@
 .account {
   margin: 1.25rem auto;
+  display: grid;
+  place-items:  center;
+  width: 100%;
 }
 
 .account_details {
   padding: 2rem;
-  width: max-content;
+  width: 40%;
+  margin: 1rem;
+  margin-bottom: 1rem;
   border-radius: 1rem;
   text-align: left;
   color: white;
@@ -19,18 +24,29 @@
 }
 
 @media screen and (max-width: 600px) {
+  .account {
+    width: 90%;
+    margin: 1rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .account_details {
-    width: 80%;
+    width: 100%;
+    margin: 1rem auto;
   }
 }
 
 @media screen and (max-width: 1024px) {
   .account {
-    height: 70vh;
-    display: grid;
-    place-items: center;
+    width: 90%;
+    margin: 1rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .account_details {
-    width: 70%;
+    margin: 1rem auto;
+    width: 100%;
   }
 }
