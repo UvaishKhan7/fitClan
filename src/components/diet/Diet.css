@@ -71,7 +71,7 @@
   letter-spacing: 2px;
   font-weight: 500;
   width: 100%;
-  border-radius: 0.5rem; 
+  border-radius: 0.5rem;
 }
 
 .custom_diet_items {
@@ -152,7 +152,7 @@
     padding-top: 1rem !important;
   }
   .diet > h2 {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     margin-bottom: 0;
     font-weight: 700;
   }
@@ -174,6 +174,7 @@
   }
   .common_diet_plan {
     width: 280px;
+    margin: 0.5rem;
   }
 }
 
@@ -183,7 +184,7 @@
     padding-top: 1rem !important;
   }
   .diet > h2 {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     margin-bottom: 0;
     font-weight: 700;
   }
@@ -194,7 +195,7 @@
   .add_meal_option {
     font-size: 1rem;
   }
-  .meal_name_input{
+  .meal_name_input {
     width: 90%;
     padding: 1.5rem 2rem;
   }
@@ -206,14 +207,14 @@
   .commonDiet {
     padding: 0;
     width: 100%;
-    margin: 1rem;
   }
   .createPlan {
     margin-bottom: 1rem;
     font-weight: 700;
   }
   .common_diet_plan {
-    width: 160px;
+    width: 42%;
+    margin: 0.5rem;
   }
   .custom_diet_items {
     display: grid;
