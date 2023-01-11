@@ -106,8 +106,8 @@ export default function Diet() {
         <TableContainer component={Paper}>
           <Table sx={{
             width: {
-              xs: 350, // theme.breakpoints.up('xs')
-              sm: 350, // theme.breakpoints.up('sm')
+              xs: 380, // theme.breakpoints.up('xs')
+              sm: 380, // theme.breakpoints.up('sm')
               md: 500, // theme.breakpoints.up('md')
               lg: 600, // theme.breakpoints.up('lg')
               xl: 900, // theme.breakpoints.up('xl')
