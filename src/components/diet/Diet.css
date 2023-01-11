@@ -195,12 +195,13 @@
     font-size: 1rem;
   }
   .meal_name_input{
-    width: 330px;
+    width: 90%;
+    padding: 1.5rem 2rem;
   }
   .meal_name_input > input[type="text"],
   .meal_name_input > input[type="time"],
   .meal_name_input > button {
-    width: 100%;
+    width: 100% !important;
   }
   .commonDiet {
     padding: 0;
