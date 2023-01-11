@@ -17,8 +17,9 @@
   border-radius: 0.5rem;
 }
 
-.title_n_trash > h6 {
+.title_n_time > h6 {
   margin-bottom: 0;
+  text-align: left;
 }
 
 .title_n_time {

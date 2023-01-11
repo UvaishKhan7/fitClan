@@ -34,22 +34,28 @@ export default function App() {
           } />
 
           {/* ============ Added Authenticated Route for Signup ============ */}
-          <Route path='/signup' element={
-            <AuthenticatedRoute>
-              <Signup />
-            </AuthenticatedRoute>} />
+          <Route path='/signup' element=
+            {
+              <AuthenticatedRoute>
+                <Signup />
+              </AuthenticatedRoute>
+            } />
 
           {/* ============ Added Authenticated Route for Landing Page ============ */}
-          <Route path='/landing' element={
-            <AuthenticatedRoute>
-              <LandingPage />
-            </AuthenticatedRoute>} />
+          <Route path='/landing' element=
+            {
+              <AuthenticatedRoute>
+                <LandingPage />
+              </AuthenticatedRoute>
+            } />
 
           {/* ============ Added Authenticated Route for Login ============ */}
-          <Route path='/login' element={
-            <AuthenticatedRoute>
-              <Login />
-            </AuthenticatedRoute>} />
+          <Route path='/login' element=
+            {
+              <AuthenticatedRoute>
+                <Login />
+              </AuthenticatedRoute>
+            } />
 
           {/* ============ Added Protected Route for Account ============ */}
           <Route path='/account' element={
@@ -74,7 +80,7 @@ export default function App() {
 
         </Routes>
 
-        <Footer className='footer'/>
+        <Footer className='footer' />
 
       </UserAuthContext>
     </div>

@@ -93,38 +93,32 @@ const UserAuthContext = ({ children }) => {
 
             setUser(currentUser);
 
-                const docRef = doc(db, 'user', currentUser.uid);
-                onSnapshot(docRef, (snapshot) => {
-                    setUserDetails(snapshot.data())
-                
+            const docRef = doc(db, 'user', currentUser.uid);
+            onSnapshot(docRef, (snapshot) => {
+                setUserDetails(snapshot.data())
+
                 //Formula for calculating BMI
-                setBMI(Math.round((snapshot.data().weight / ((snapshot.data().height / 100) * (snapshot.data().height / 100)))*100)/100);
+                setBMI(Math.round((snapshot.data().weight / ((snapshot.data().height / 100) * (snapshot.data().height / 100))) * 100) / 100);
 
                 //Formula for calculating BMR for men
-                setBMRMen(Math.round((88.362 + (13.397 * snapshot.data().weight) + (4.799 * snapshot.data().height) - (5.677 * snapshot.data().age))*100)/100);
+                setBMRMen(Math.round((88.362 + (13.397 * snapshot.data().weight) + (4.799 * snapshot.data().height) - (5.677 * snapshot.data().age)) * 100) / 100);
 
                 //Formula for calculating BMR for women 
-                setBMRWomen(Math.round((447.593 + (9.247 * snapshot.data().weight) + (3.098 * snapshot.data().height) - (4.330 * snapshot.data().age))*100)/100);
+                setBMRWomen(Math.round((447.593 + (9.247 * snapshot.data().weight) + (3.098 * snapshot.data().height) - (4.330 * snapshot.data().age)) * 100) / 100);
 
                 //Formula for calculating BFP for men 
                 const BMIdata = (snapshot.data().weight / ((snapshot.data().height / 100) * (snapshot.data().height / 100)))
-                setBFPMen(Math.round(((1.20 * BMIdata) + (0.23 * snapshot.data().age) - 16.2)*100)/100);
+                setBFPMen(Math.round(((1.20 * BMIdata) + (0.23 * snapshot.data().age) - 16.2) * 100) / 100);
 
                 //Formula for calculating BFP for women
-                setBFPWomen(Math.round(((1.20 * BMIdata) + (0.23 * snapshot.data().age) - 5.4)*100)/100);
+                setBFPWomen(Math.round(((1.20 * BMIdata) + (0.23 * snapshot.data().age) - 5.4) * 100) / 100);
 
                 //Formula for calculating IBW for Men
-                setIBWMen(Math.round((22 * ((snapshot.data().height / 100) * (snapshot.data().height / 100)))*100)/100);
+                setIBWMen(Math.round((22 * ((snapshot.data().height / 100) * (snapshot.data().height / 100))) * 100) / 100);
 
                 //Formula for calculating IBW for women
-                setIBWWomen(Math.round((22 * (((snapshot.data().height / 100) * (snapshot.data().height / 100)) - 10))*100)/100);
+                setIBWWomen(Math.round((22 * (((snapshot.data().height / 100) * (snapshot.data().height / 100)) - 10)) * 100) / 100);
             })
-            
-            if (!user) {
-                navigate('/landing')
-            } else {
-                navigate('/')
-            }
 
         });
 
