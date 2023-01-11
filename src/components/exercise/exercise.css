@@ -64,6 +64,9 @@
     align-items: center;
     text-align: center;
   }
+  .exercise_plans {
+    padding: 1rem;
+  }
 }
 
 /* ========== For Small Devices ========== */
@@ -77,15 +80,17 @@
     text-align: center;
   }
   .exercise > h3 {
+    width: 95%;
     font-size: 1.5rem;
   }
   .exercise_outer{
     width: 100%;
     margin: 0;
     padding: 0;
+    gap: 1rem;
   }
   .exercise_plans{
-    width: 100%;
-    padding: 0.5rem;
+    width: 95%;
+    padding: 1rem;
   }
 }
