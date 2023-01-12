@@ -7,6 +7,7 @@ import db from '../../firebase';
 export default function Exercise() {
 
   const [exercise, setExercise] = useState([{}]);
+
   useEffect(() => {
     const foodRef = collection(db, "exercise");
     const q = query(foodRef);
@@ -25,7 +26,7 @@ export default function Exercise() {
       <h3>Your exercise plan is below:</h3>
       <div className="exercise_outer">
         {
-          exercise?.map(item => (
+          exercise?.map((item) => (
             <div key={item.id} className="exercise_plans">
               <img src={item.backgroundUrl} alt="img" />
               <div className="exercise_plans_container">
