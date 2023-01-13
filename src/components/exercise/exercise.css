@@ -69,6 +69,37 @@
   text-justify: inter-word;
 }
 
+.searchbar-exercises {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  border-radius: 0.5rem;
+  width: 350px;
+  margin: auto;
+}
+
+.searchinput-exercise {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-exercise {
+  background: transparent;
+  border: none;
+  width: 100%;
+  outline: none;
+  color: white;
+  border-bottom: 1px solid gray;
+}
+
+.input-exercise::placeholder {
+  font-size: 0.8rem;
+}
+
 /* ========== For Medium Devices ========== */
 @media screen and (max-width: 1024px) {
   .exercise {
