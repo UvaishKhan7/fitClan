@@ -1,0 +1,56 @@
+.card-wrapper{
+    
+    margin: auto;
+    backdrop-filter: blur(2px);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+    gap: 2rem;
+    justify-content: space-evenly;
+}
+.exercise-card{
+    
+    width: 370px;
+    background-color: black;
+    margin-block: 1.5rem;
+    border-radius: 0.5rem;
+    padding: 5px;
+    transition: 0.3s;
+}
+.exercise-card:hover{
+    transform: scale(1.05);
+}
+.gif{
+    
+    border-radius: 0.5rem;
+    
+}
+/* .gif image{
+    
+} */
+
+.exerscise-details{
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.target-equipment{
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: space-around;
+
+}
+.exercise-name{
+    font-size: 18px;
+    font-weight: 500;
+    padding-block: 1rem;
+    text-overflow:ellipsis;   
+}
+.badge{
+    font-size: 15px;
+    font-weight: lighter;
+    border-radius: 15px;
+    line-height: 0.3rem;
+    padding: 5px;
+}
