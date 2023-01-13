@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import './exercise.css';
 import { collection, onSnapshot, query } from 'firebase/firestore';
 import db from '../../firebase';
-//import exercise from '../../workoutData.json';
+import { Skeleton } from '@mui/material';
 
 export default function Exercise() {
 
   const [exercise, setExercise] = useState([{}]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     const foodRef = collection(db, "exercise");
     const q = query(foodRef);
     onSnapshot(q, (snapshot) => {
@@ -19,6 +21,9 @@ export default function Exercise() {
       })
       ))
     });
+    setInterval(() => {
+      setLoading(false);
+    }, 2500)
   }, [])
 
   return (
@@ -27,16 +32,33 @@ export default function Exercise() {
       <div className="exercise_outer">
         {
           exercise?.map((item) => (
+
             <div key={item.id} className="exercise_plans">
-              <img src={item.backgroundUrl} alt="img" />
+              {
+                loading
+                  ? <Skeleton className='m-2' animation="wave" sx={{ bgcolor: 'grey.900' }} variant='rounded' height={380} />
+                  : <img src={item.backgroundUrl} alt="img" />
+              }
               <div className="exercise_plans_container">
-                <h3>{item.title} &nbsp;
-                  <small>({item.category})</small>
-                </h3>
-                <a className='btn btn-danger w-100' href={item.pdfUrl} download={true}>Download PDF</a>
-                <p className="goal_plan">
-                  {item.details}
-                </p>
+                {
+                  loading ?
+                    <Skeleton className='mb-2' animation="wave" sx={{ bgcolor: 'grey.900' }} variant='rounded' height={35} />
+                    : (<h3>{item.title} &nbsp;
+                      <small>({item.category})</small>
+                    </h3>)
+                }
+                {
+                  loading ?
+                    <Skeleton className='mb-2' animation="wave" sx={{ bgcolor: 'grey.900' }} variant='rounded' height={35} />
+                    : <a className='btn btn-danger w-100' href={item.pdfUrl} download={true}>Download PDF</a>
+                }
+                {
+                  loading ?
+                    <Skeleton className='mb-2' animation="wave" sx={{ bgcolor: 'grey.900' }} variant='rounded' height={75} />
+                    : (<p className="goal_plan">
+                      {item.details}
+                    </p>)
+                }
               </div>
             </div>
           ))
