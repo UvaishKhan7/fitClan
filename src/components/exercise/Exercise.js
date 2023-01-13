@@ -143,7 +143,7 @@ export default function Exercise() {
                           handleSearch()
                         } }}
            value={wordEntered}
-          onChange={e=>{setWordEntered(e.target.value)}}
+          onChange={e=>{setWordEntered(e.target.value.toLowerCase())}}
           placeholder="Search Exercises/Body part/Target .."
           type="text"
           >
