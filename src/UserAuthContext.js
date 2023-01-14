@@ -117,7 +117,7 @@ const UserAuthContext = ({ children }) => {
                 setIBWMen(Math.round((22 * ((snapshot.data().height / 100) * (snapshot.data().height / 100))) * 100) / 100);
 
                 //Formula for calculating IBW for women
-                setIBWWomen(Math.round((22 * (((snapshot.data().height / 100) * (snapshot.data().height / 100)) - 10)) * 100) / 100);
+                setIBWWomen(Math.round(((22 * (((snapshot.data().height / 100) * (snapshot.data().height / 100))))- 10) * 100) / 100);
             })
 
         });

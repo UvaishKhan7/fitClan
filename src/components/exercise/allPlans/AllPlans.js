@@ -23,7 +23,7 @@ export default function AllPlans() {
 
     return (
         <div className='exercise'>
-            <h3>Your exercise plan is below:</h3>
+            <h3>All Exercise Plans</h3>
 
             <div className="exercise_outer">
                 {
