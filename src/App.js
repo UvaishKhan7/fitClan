@@ -15,6 +15,7 @@ import ProtectedRoute, { AuthenticatedRoute } from "./ProtectedRoute";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Banner from './assets/Banner.gif';
 import LOGO from './assets/logo.png';
+import AllPlans from "./components/exercise/allPlans/AllPlans";
 
 export default function App() {
 
@@ -78,6 +79,13 @@ export default function App() {
           <Route path='/exercise' element={
             <ProtectedRoute>
               <Exercise />
+            </ProtectedRoute>
+          } />
+
+          {/* ============ Added Protected Route for All Exercise ============ */}
+          <Route path='/exercise/all_plans' element={
+            <ProtectedRoute>
+              <AllPlans />
             </ProtectedRoute>
           } />
 

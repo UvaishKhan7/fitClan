@@ -1,0 +1,109 @@
+.exercise {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 2rem;
+}
+
+.exercise_outer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 1rem auto;
+  gap: 2rem;
+}
+
+.exercise_plans {
+  width: 380px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 0.5rem;
+}
+
+.exercise_plans > img {
+  width: 100%;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.exercise_plans_container {
+  padding: 0.5rem 1.5rem;
+}
+
+.exercise > h3,
+.exercise_plans_container > h3 {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  backdrop-filter: blur(4px);
+  font-size: 1.2rem;
+  text-transform: capitalize;
+}
+
+.exercise_plans_container > h3 {
+  padding: 0.5rem;
+  background-color: #000000;
+}
+
+.exercise_plans_container > h3 > small {
+  color: gray;
+  text-transform: capitalize;
+  font-size: 0.8rem;
+}
+
+.exercise > h3 {
+  width: fit-content;
+  font-size: 2rem;
+  padding: 0.5rem 2rem;
+}
+
+.goal_plan {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* ========== For Medium Devices ========== */
+@media screen and (max-width: 1024px) {
+  .exercise {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .exercise_plans {
+    padding: 1rem;
+  }
+}
+
+/* ========== For Small Devices ========== */
+@media screen and (max-width: 600px) {
+  .exercise {
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .exercise > h3 {
+    width: 95%;
+    font-size: 1.5rem;
+  }
+  .exercise_outer {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    gap: 1rem;
+  }
+  .exercise_plans {
+    width: 95%;
+    padding: 1rem;
+  }
+}

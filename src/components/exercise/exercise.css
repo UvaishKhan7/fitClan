@@ -1,82 +1,24 @@
-.exercise {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  padding: 2rem;
-}
-
-.exercise_outer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin: 1rem auto;
-  gap: 2rem;
-}
-
-.exercise_plans {
-  width: 380px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
-  border-radius: 0.5rem;
-}
-
-.exercise_plans > img {
+.search-results {
   width: 100%;
-  border-radius: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-
-.exercise_plans_container {
-  padding: 0.5rem 1.5rem;
-}
-
-.exercise > h3,
-.exercise_plans_container > h3 {
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  backdrop-filter: blur(4px);
-  font-size: 1.2rem;
-  text-transform: capitalize;
-}
-
-.exercise_plans_container > h3 {
-  padding: 0.5rem;
-  background-color: #000000;
-}
-
-.exercise_plans_container > h3 > small {
-  color: gray;
-  text-transform: capitalize;
-  font-size: 0.8rem;
-}
-
-.exercise > h3 {
-  width: fit-content;
-  font-size: 2rem;
-  padding: 0.5rem 2rem;
-}
-
-.goal_plan{
-  text-align: justify;
-  text-justify: inter-word;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem 2rem;
+  margin: 1rem;
 }
 
 .searchbar-exercises {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: left;
   border-radius: 0.5rem;
-  width: 350px;
-  margin: auto;
+  width: 40%;
+  height: 120px;
 }
 
 .searchinput-exercise {
@@ -85,6 +27,7 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid gray;
 }
 
 .input-exercise {
@@ -93,49 +36,68 @@
   width: 100%;
   outline: none;
   color: white;
-  border-bottom: 1px solid gray;
 }
 
 .input-exercise::placeholder {
   font-size: 0.8rem;
 }
 
-/* ========== For Medium Devices ========== */
-@media screen and (max-width: 1024px) {
-  .exercise {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  .exercise_plans {
-    padding: 1rem;
-  }
+.btn_link_text {
+  display: grid;
+  place-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 0.5rem;
+  text-align: center;
+  width: 40%;
+  height: 120px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  padding: 1rem;
 }
 
-/* ========== For Small Devices ========== */
+Link,
+.btn_link_text,
+.btn_link_text:hover,
+.btn_link_text:visited {
+  text-decoration: none;
+  color: rgb(245, 245, 245);
+}
+
 @media screen and (max-width: 600px) {
   .exercise {
-    padding: 1rem 0.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    margin-top: 1.5rem;
+    min-height: 40vh;
+    width: 100%;
   }
   .exercise > h3 {
     width: 95%;
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
-  .exercise_outer{
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    gap: 1rem;
-  }
-  .exercise_plans{
+  .search-results {
+    display: flex;
+    flex-direction: column;
     width: 95%;
+    padding: 0;
+  }
+  .searchbar-exercises {
+    width: 100%;
     padding: 1rem;
+    height: max-content;
+  }
+  .searchbar-exercises > h4 {
+    font-size: 1.2rem;
+  }
+  .btn_link_text {
+    width: 100%;
+    height: max-content;
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .exercise{
+    min-height: 65vh;
   }
 }
