@@ -1,12 +1,4 @@
-.card-wrapper {
-  margin: auto;
-  backdrop-filter: blur(2px);
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0.5rem;
-  gap: 2rem;
-  justify-content: space-evenly;
-}
+
 
 .exercise-card {
   width: 370px;
@@ -15,6 +7,7 @@
   border-radius: 0.5rem;
   padding: 5px;
   transition: 0.3s;
+  margin: 1rem;
 }
 
 .exercise-card:hover {
@@ -29,8 +22,7 @@
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
+  justify-content: space-evenly; 
 }
 
 .target-equipment {
