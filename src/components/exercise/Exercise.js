@@ -3,12 +3,17 @@ import './exercise.css';
 import { BsSearch } from 'react-icons/bs';
 import ExerciseCard from './ExerciseCard';
 import { Link } from 'react-router-dom';
+import { BiBody } from 'react-icons/bi';
+import { CgGym } from 'react-icons/cg';
+
 
 export default function Exercise() {
 
   const [exerciseData, setExerciseData] = useState([]);
   const [searchedData, setsearchedData] = useState([]);
   const [wordEntered, setWordEntered] = useState('');
+  const [suggestedresult, setSuggestedresult] = useState();
+  const [suggestion, setSuggestion] = useState([]);
 
   const searchResult = useRef(null)
 
@@ -30,6 +35,19 @@ export default function Exercise() {
 
   }, []);
 
+  const handleSuggestions = async (e) => {
+    const searchedWord = e.target.value.toLowerCase();
+    setWordEntered(searchedWord);
+    const filteredExercise = exerciseData.filter(
+      (item) => item.name.includes(searchedWord)
+      || item.target.includes(searchedWord)
+      || item.equipment.includes(searchedWord)
+      || item.bodyPart.includes(searchedWord));
+    
+      searchedWord === "" ? setSuggestion([]) : setSuggestion(filteredExercise);
+      console.log('sugg',suggestion)
+  };
+
   const handleSearch = (e) => {
 
     const filteredData = exerciseData.filter(
@@ -38,19 +56,43 @@ export default function Exercise() {
         || item.equipment.includes(wordEntered)
         || item.bodyPart.includes(wordEntered));
 
-    setWordEntered('')
+    
+
     setsearchedData(filteredData);
     window.scrollTo({
       top: searchResult.current.offsetTop,
       behavior: 'smooth',
     });
+    setWordEntered('')
+    setSuggestion([])
   };
 
-  return (
-    <div className='exercise'>
-      <h3>Your exercise plan is below:</h3>
+  
+  const handlesuggestedSearch=(exercise)=>{
+     setsearchedData([]) 
+    console.log(exercise)
+      setSuggestedresult(exercise)
+      
+      window.scrollTo({
+        top: searchResult.current.offsetTop,
+        behavior: 'smooth',
+      });
+    setSuggestion([])
 
-      <div className='search-results' >
+      
+  }
+
+  return (
+    <div className='exercise-wrapper'>
+      <h3>Your exercise plan is below:</h3>
+      
+
+      <div className='plans-exercises' >
+
+      <Link to='/exercise/all_plans' className='btn_link_text'>
+          CLICK TO SEE ALL PLANS
+        </Link>  
+
         <div className="searchbar-exercises" ref={searchResult}>
           <h4 >Search Exercises For Details</h4>
           <div className="searchinput-exercise">
@@ -61,23 +103,53 @@ export default function Exercise() {
                 }
               }}
               value={wordEntered}
-              onChange={e => { setWordEntered(e.target.value.toLowerCase()) }}
+              onFocus={handleSuggestions}
+              onChange={ handleSuggestions }
               placeholder="Search Exercises/Body part/Target .."
               type="text"
             >
             </input>
             <BsSearch className="searchicon" onClick={handleSearch} />
           </div>
+
+          <div className='suggestions'>
+        {suggestion !== 0 && (
+          <div className="suggested-results">
+            {suggestion.map((exercise, index) => {
+              return (
+                <div className='suggested-item' key={index} onClick={e=>{
+                  handlesuggestedSearch(exercise)  
+                }}>
+                  <div className='item-left'>{exercise.name}</div>
+
+                  <div className='item-right'>
+                  <div className='ex-target'><BiBody/>{exercise.target}</div>
+                  <div className='ex-equipment'><CgGym />{exercise.equipment}</div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
         </div>
 
-        <Link to='/exercise/all_plans' className='btn_link_text'>
-          CLICK TO SEE ALL PLANS
-        </Link>
+        </div>
+        
       </div>
+      
 
-      {searchedData !== 0 && (
-        <ExerciseCard searchedData={searchedData} />
-      )}
+
+      <div className='exercise-results' ref={searchResult} >
+      {searchedData !== 0 && 
+        searchedData.splice(0, 15).map((exercise, index) => (
+        <ExerciseCard exercise={exercise} key={index} />
+      ))
+      }
+      {!suggestedresult? null:
+        <ExerciseCard exercise={suggestedresult} />
+        }
+      </div>
+        
 
     </div>
   )
