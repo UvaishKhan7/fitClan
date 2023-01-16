@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: center;
   padding: 1rem 0;
+  backdrop-filter: blur(4px)
 }
 
 .diet > h2,
