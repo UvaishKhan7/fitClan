@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { AuthErrorCodes, browserSessionPersistence, setPersistence } from 'firebase/auth';
-import { doc, onSnapshot, setDoc } from 'firebase/firestore';
+import { collection, doc, onSnapshot, orderBy, query, setDoc } from 'firebase/firestore';
 import db, {
     auth, createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -27,6 +27,10 @@ const UserAuthContext = ({ children }) => {
     const [BFPWomen, setBFPWomen] = useState(null);
     const [IBWMen, setIBWMen] = useState(null);
     const [IBWWomen, setIBWWomen] = useState(null);
+    const [foodItems, setFoodItems] = useState([]);
+    const [meals, setMeals] = useState([]);
+
+
 
     const navigate = useNavigate();
 
@@ -119,17 +123,46 @@ const UserAuthContext = ({ children }) => {
                 //Formula for calculating IBW for women
                 setIBWWomen(Math.round(((22 * (((snapshot.data().height / 100) * (snapshot.data().height / 100))))- 10) * 100) / 100);
             })
-
+            const colRef = collection(db, "user", currentUser.uid, 'meals');
+        const q = query(colRef, orderBy("time"));
+        onSnapshot(q, (snapshot) => {
+          setMeals(snapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+            name: doc.data().name
+          })))
+          
+        })
         });
-
+        
         return () => {
             unsubscribe();
         };
+        
         // eslint-disable-next-line
     }, []);
 
+
+    // useEffect(() => {
+    //     const colRef = collection(db, "user", user.uid, 'meals', id, `${title}`);
+    //     const q = query(colRef, orderBy("timestamp"));
+    //     onSnapshot(q, (snapshot) => {
+    //       setFoodItems(snapshot.docs.map((doc) =>
+    //       ({
+    //         ...doc.data(),
+    //         id: doc.id,
+    //         name: doc.data().title,
+    //         carbs: doc.data().carbs,
+    //         protein: doc.data().protein,
+    //         fat: doc.data().fat,
+    //         calory: doc.data().calory
+    //       })
+    //       ))
+    //     });  
+    // }, []);
+
     return (
-        <userContext.Provider value={{ signUp, user, userDetails, logout, signIn, error, BMI, BMRMen, BMRWomen, BFPMen, BFPWomen, IBWMen, IBWWomen }}>
+        <userContext.Provider value={{ signUp, user, userDetails, logout, signIn, error, BMI, BMRMen, BMRWomen, BFPMen, BFPWomen, IBWMen, IBWWomen , foodItems , meals }}>
             {children}
         </userContext.Provider>
     );

@@ -17,11 +17,12 @@ import Paper from '@mui/material/Paper';
 
 export default function Diet() {
 
-  const [meals, setMeals] = useState([]);
   const [mealName, setMealName] = useState('')
   const [mealTime, setMealTime] = useState();
+  const [intakeCarbs, setIntakeCarbs] = useState(0);
 
-  const { user, userDetails, BMRMen, BMRWomen } = UserAuth();
+
+  const { user, userDetails, BMRMen, BMRWomen , meals } = UserAuth();
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -75,18 +76,10 @@ export default function Diet() {
     }
   };
 
-  const colRef = collection(db, "user", user.uid, 'meals');
-
   useEffect(() => {
-    const q = query(colRef, orderBy("time"));
-    onSnapshot(q, (snapshot) => {
-      setMeals(snapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-        name: doc.data().name
-      })))
-    })// eslint-disable-next-line
-  }, []);
+
+    console.log('meals',meals)
+  }, [meals]);
 
   return (
     <div className='diet'>
@@ -137,7 +130,7 @@ export default function Diet() {
 
       <div className='custom_diet_items'>
         {meals?.map(meal => (
-          <CustomDiet key={meal.id} id={meal.id} title={meal.name} time={meal.time} />
+          <CustomDiet key={meal.id} id={meal.id} title={meal.name} time={meal.time} meals={meals} />
         )
         )}
       </div>

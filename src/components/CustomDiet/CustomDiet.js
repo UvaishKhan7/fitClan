@@ -7,12 +7,16 @@ import { BsSearch } from "react-icons/bs";
 import { HiOutlineTrash } from 'react-icons/hi'
 import { Button } from '@mui/material';
 
-export default function CustomDiet({ id, title, time }) {
+export default function CustomDiet({ id, title, time , meals }) {
 
   const [foodItems, setFoodItems] = useState([]);
   const [foodData, setFoodData] = useState([]);
   const [searchedData, setsearchedData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
+  const [totalCarbs, setTotalCarbs] = useState(0);
+  const [totalProteins, setTotalProteins] = useState(0);
+  const [totalFat, setTotalFat] = useState(0);
+  const [totalCalories, setTotalCalories] = useState(0);
   const { user } = UserAuth();
 
   // handleSearch function to handle the searched food item
@@ -71,7 +75,6 @@ export default function CustomDiet({ id, title, time }) {
       ))
     });
 
-
     const foodRef = collection(db, "foodItems");
     const qu = query(foodRef);
     onSnapshot(qu, (snapshot) => {
@@ -89,8 +92,14 @@ export default function CustomDiet({ id, title, time }) {
       })
       ))
     });
-    // eslint-disable-next-line 
-  }, []);
+}, []);
+
+  useEffect(() => {
+    setTotalCarbs(foodItems.reduce((sum, obj) => sum + obj.carbs, 0))
+  setTotalCalories(foodItems.reduce((sum, obj) => sum + obj.calory, 0))
+  setTotalProteins(foodItems.reduce((sum, obj) => sum + obj.protein, 0))
+  setTotalFat(foodItems.reduce((sum, obj) => sum + obj.fat, 0))
+  }, [foodItems]);
 
   return (
     <div className='custom_diet'>
@@ -151,12 +160,12 @@ export default function CustomDiet({ id, title, time }) {
         ))
       }
 
-      {/* <div className="total_macros">
-        Total Cal = kCal,
-        Total Prot = g,
-        Total Carb = g,
-        Total Fat = g
-      </div> */}
+      <div className="total_macros">
+        Total Cal ={totalCalories.toFixed(2)} kCal,
+        Total Prot ={totalProteins.toFixed(2)} g,
+        Total Carb ={totalCarbs.toFixed(2)} g,
+        Total Fat ={totalFat.toFixed(2)} g
+      </div>
 
     </div >
   )
