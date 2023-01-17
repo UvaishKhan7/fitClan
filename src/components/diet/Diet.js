@@ -93,7 +93,6 @@ export default function Diet() {
     }
   };
 
-  console.log("intake from DB", intake);
 
   return (
     <div className="diet">
