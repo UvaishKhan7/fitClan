@@ -109,9 +109,10 @@ Link,
 
 @media screen and (max-width: 600px) {
   .exercise-wrapper {
-    margin-top: 1.5rem;
+    margin-top: 0rem;
     min-height: 40vh;
     width: 100%;
+    padding: 0.5rem;
   }
   .exercise > h3 {
     width: 95%;

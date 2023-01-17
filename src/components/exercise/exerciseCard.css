@@ -1,11 +1,9 @@
-
-
 .exercise-card {
-  width: 370px;
-  background-color: black;
-  margin-block: 1.5rem;
+  width: 380px;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
   border-radius: 0.5rem;
-  padding: 5px;
+  padding: 0.5rem;
   transition: 0.3s;
   margin: 1rem;
 }
@@ -14,20 +12,14 @@
   transform: scale(1.05);
 }
 
-.gif {
+.gif > img {
   border-radius: 0.5rem;
 }
 
 .exerscise-details {
+  display: flex;
   padding: 0.5rem;
-  display: flex;
   flex-direction: column;
-  justify-content: space-evenly; 
-}
-
-.target-equipment {
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
   justify-content: space-between;
 }
 
@@ -39,10 +31,15 @@
   text-transform: capitalize;
 }
 
+.target-equipment {
+  display: flex;
+  justify-content: space-between;
+}
+
 .badge {
   font-size: 15px;
   font-weight: lighter;
-  border-radius: 15px;
+  border-radius: 0.5rem;
   line-height: 0.3rem;
   padding: 5px;
   text-transform: capitalize;
@@ -50,7 +47,7 @@
 
 @media screen and (max-width: 600px) {
   .exercise-card {
-    width: 90%;
+    width: 95%;
     margin: auto;
     margin: 0;
     display: flex;

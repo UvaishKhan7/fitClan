@@ -40,12 +40,12 @@ export default function Exercise() {
     setWordEntered(searchedWord);
     const filteredExercise = exerciseData.filter(
       (item) => item.name.includes(searchedWord)
-      || item.target.includes(searchedWord)
-      || item.equipment.includes(searchedWord)
-      || item.bodyPart.includes(searchedWord));
-    
-      searchedWord === "" ? setSuggestion([]) : setSuggestion(filteredExercise);
-      console.log('sugg',suggestion)
+        || item.target.includes(searchedWord)
+        || item.equipment.includes(searchedWord)
+        || item.bodyPart.includes(searchedWord));
+
+    searchedWord === "" ? setSuggestion([]) : setSuggestion(filteredExercise);
+    console.log('sugg', suggestion)
   };
 
   const handleSearch = (e) => {
@@ -56,7 +56,7 @@ export default function Exercise() {
         || item.equipment.includes(wordEntered)
         || item.bodyPart.includes(wordEntered));
 
-    
+
 
     setsearchedData(filteredData);
     window.scrollTo({
@@ -67,32 +67,26 @@ export default function Exercise() {
     setSuggestion([])
   };
 
-  
-  const handlesuggestedSearch=(exercise)=>{
-     setsearchedData([]) 
-    console.log(exercise)
-      setSuggestedresult(exercise)
-      
-      window.scrollTo({
-        top: searchResult.current.offsetTop,
-        behavior: 'smooth',
-      });
-    setSuggestion([])
 
-      
+  const handlesuggestedSearch = (exercise) => {
+    setsearchedData([])
+    console.log(exercise)
+    setSuggestedresult(exercise)
+    window.scrollTo({
+      top: searchResult.current.offsetTop,
+      behavior: 'smooth',
+    });
+    setSuggestion([])
   }
 
   return (
     <div className='exercise-wrapper'>
       <h3>Your exercise plan is below:</h3>
-      
 
       <div className='plans-exercises' >
-
-      <Link to='/exercise/all_plans' className='btn_link_text'>
+        <Link to='/exercise/all_plans' className='btn_link_text'>
           CLICK TO SEE ALL PLANS
-        </Link>  
-
+        </Link>
         <div className="searchbar-exercises" ref={searchResult}>
           <h4 >Search Exercises For Details</h4>
           <div className="searchinput-exercise">
@@ -104,7 +98,7 @@ export default function Exercise() {
               }}
               value={wordEntered}
               onFocus={handleSuggestions}
-              onChange={ handleSuggestions }
+              onChange={handleSuggestions}
               placeholder="Search Exercises/Body part/Target .."
               type="text"
             >
@@ -113,43 +107,40 @@ export default function Exercise() {
           </div>
 
           <div className='suggestions'>
-        {suggestion !== 0 && (
-          <div className="suggested-results">
-            {suggestion.map((exercise, index) => {
-              return (
-                <div className='suggested-item' key={index} onClick={e=>{
-                  handlesuggestedSearch(exercise)  
-                }}>
-                  <div className='item-left'>{exercise.name}</div>
+            {suggestion !== 0 && (
+              <div className="suggested-results">
+                {suggestion.map((exercise, index) => {
+                  return (
+                    <div className='suggested-item' key={index} onClick={e => {
+                      handlesuggestedSearch(exercise)
+                    }}>
+                      <div className='item-left'>{exercise.name}</div>
 
-                  <div className='item-right'>
-                  <div className='ex-target'><BiBody/>{exercise.target}</div>
-                  <div className='ex-equipment'><CgGym />{exercise.equipment}</div>
-                  </div>
-                </div>
-              );
-            })}
+                      <div className='item-right'>
+                        <div className='ex-target'><BiBody />{exercise.target}</div>
+                        <div className='ex-equipment'><CgGym />{exercise.equipment}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
-        )}
-        </div>
 
         </div>
-        
+
       </div>
-      
-
 
       <div className='exercise-results' ref={searchResult} >
-      {searchedData !== 0 && 
-        searchedData.splice(0, 15).map((exercise, index) => (
-        <ExerciseCard exercise={exercise} key={index} />
-      ))
-      }
-      {!suggestedresult? null:
-        <ExerciseCard exercise={suggestedresult} />
+        {searchedData !== 0 &&
+          searchedData.splice(0, 15).map((exercise, index) => (
+            <ExerciseCard exercise={exercise} key={index} />
+          ))
+        }
+        {!suggestedresult ? null :
+          <ExerciseCard exercise={suggestedresult} />
         }
       </div>
-        
 
     </div>
   )
