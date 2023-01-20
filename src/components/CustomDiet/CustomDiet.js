@@ -48,6 +48,8 @@ export default function CustomDiet({ id, title, time, meals, setIntake }) {
 
   // adding new food item to the meal & database
   const additem = async (item) => {
+    setsearchedData([]);
+    setWordEntered("");
     if (item) {
       const mealColRef = collection(
         db,
@@ -65,8 +67,6 @@ export default function CustomDiet({ id, title, time, meals, setIntake }) {
         calory: item.calories,
         timestamp: serverTimestamp(),
       });
-      setsearchedData([]);
-      setWordEntered("");
     }
   };
 
