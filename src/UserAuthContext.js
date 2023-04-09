@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import {
   AuthErrorCodes,
-  browserSessionPersistence,
+  browserLocalPersistence,
   setPersistence,
 } from "firebase/auth";
 import {
@@ -95,7 +95,7 @@ const UserAuthContext = ({ children }) => {
 
   const signIn = (email, password) => {
     setError("");
-    setPersistence(auth, browserSessionPersistence)
+    setPersistence(auth, browserLocalPersistence)
       .then(() => {
         signInWithEmailAndPassword(auth, email, password);
         navigate("/");
